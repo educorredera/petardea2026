@@ -5,56 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Petardea Sound</title>
   <meta name="theme-color" content="#111111" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
-  <style>
-    :root, [data-theme="light"] {
-      --bg: #faf8f2;
-      --surface: #ffffff;
-      --surface-2: #f2eee4;
-      --surface-3: #e8e0d0;
-      --text: #111111;
-      --muted: #625d55;
-      --line: rgba(17,17,17,.12);
-      --line-strong: rgba(17,17,17,.2);
-      --primary: #111111;
-      --accent: #ff4fa3;
-      --accent-2: #2ed3ff;
-      --accent-3: #ffd84d;
-      --success: #1b9f5c;
-      --danger: #b61e57;
-      --radius-sm: 14px;
-      --radius-md: 20px;
-      --radius-lg: 28px;
-      --radius-xl: 36px;
-      --shadow: 0 16px 40px rgba(0,0,0,.10);
-      --shadow-soft: 0 8px 24px rgba(0,0,0,.06);
-      --text-xs: clamp(.75rem,.72rem + .2vw,.875rem);
-      --text-sm: clamp(.875rem,.85rem + .25vw,1rem);
-      --text-base: clamp(1rem,.97rem + .2vw,1.0625rem);
-      --text-lg: clamp(1.125rem,1.05rem + .5vw,1.4rem);
-      --text-xl: clamp(1.8rem,1.4rem + 1vw,2.3rem);
-    }
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-    [data-theme="dark"] {
-      --bg: #111111;
-      --surface: #181818;
-      --surface-2: #222222;
-      --surface-3: #2d2d2d;
-      --text: #faf8f2;
-      --muted: #c9c1b4;
-      --line: rgba(255,255,255,.12);
-      --line-strong: rgba(255,255,255,.22);
-      --primary: #faf8f2;
-      --accent: #ff67b8;
-      --accent-2: #53dbff;
-      --accent-3: #ffd84d;
-      --success: #4cdf8b;
-      --danger: #ff6b96;
-      --shadow: 0 16px 40px rgba(0,0,0,.35);
-      --shadow-soft: 0 8px 24px rgba(0,0,0,.22);
+  <style>
+    :root {
+      --bg: #f8f5ee;
+      --surface: #ffffff;
+      --surface-2: #f1ece3;
+      --text: #101010;
+      --muted: #625b50;
+      --line: rgba(16,16,16,.12);
+      --primary: #101010;
+      --accent: #ff4ea6;
+      --accent-2: #31d6ff;
+      --accent-3: #ffd54d;
+      --ok: #16985c;
+      --danger: #be2558;
+      --radius-1: 16px;
+      --radius-2: 24px;
+      --radius-3: 32px;
+      --shadow-1: 0 10px 28px rgba(0,0,0,.08);
+      --shadow-2: 0 18px 44px rgba(0,0,0,.12);
     }
 
     * { box-sizing: border-box; }
@@ -65,31 +40,46 @@
       font-family: Inter, system-ui, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top right, rgba(255, 79, 163, .12), transparent 32%),
-        radial-gradient(circle at top left, rgba(46, 211, 255, .10), transparent 30%),
+        radial-gradient(circle at top right, rgba(255,78,166,.12), transparent 28%),
+        radial-gradient(circle at top left, rgba(49,214,255,.10), transparent 28%),
         var(--bg);
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
 
-    img, iframe { display:block; max-width:100%; }
-    a { color: inherit; text-decoration: none; }
-    button, input { font: inherit; }
-    .hidden { display:none !important; }
-
-    .app-shell {
-      width: min(100%, 430px);
-      margin: 0 auto;
-      min-height: 100dvh;
-      background: color-mix(in srgb, var(--bg) 90%, transparent);
-      position: relative;
-      overflow: hidden;
-      border-inline: 1px solid var(--line);
+    img, iframe {
+      display: block;
+      max-width: 100%;
+      height: auto;
     }
 
-    .screen {
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .app {
+      width: min(100%, 430px);
       min-height: 100dvh;
-      padding-bottom: calc(92px + env(safe-area-inset-bottom));
+      margin: 0 auto;
+      background: color-mix(in srgb, var(--bg) 92%, white 8%);
+      border-inline: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-screen,
+    .main-screen {
+      min-height: 100dvh;
+      padding-bottom: 92px;
     }
 
     .login-screen {
@@ -98,33 +88,32 @@
       padding: 28px;
     }
 
-    .login-card {
+    .card {
       background: var(--surface);
       border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow);
-      padding: 22px;
+      border-radius: var(--radius-3);
+      box-shadow: var(--shadow-2);
+      padding: 20px;
     }
 
-    .brand-mark {
+    .brand {
       width: 100%;
-      border-radius: 18px;
-      background: #fff;
-      padding: 14px;
-      border: 1px solid var(--line);
+      max-height: 150px;
       object-fit: contain;
-      max-height: 146px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      padding: 12px;
+      background: #fff;
     }
 
     .eyebrow {
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 12px;
-      border-radius:999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
       background: color-mix(in srgb, var(--accent) 14%, var(--surface));
-      color: var(--primary);
-      font-size: var(--text-xs);
+      font-size: 12px;
       font-weight: 800;
       letter-spacing: .08em;
       text-transform: uppercase;
@@ -132,59 +121,742 @@
     }
 
     h1, h2, h3 {
-      font-family: Archivo, Inter, sans-serif;
       margin: 0;
-      line-height: 1.06;
+      font-family: Archivo, Inter, sans-serif;
+      line-height: 1.05;
     }
 
-    .login-title {
-      font-size: var(--text-xl);
-      margin: 18px 0 10px;
+    .title {
+      font-size: clamp(1.8rem, 1.4rem + 1vw, 2.3rem);
       text-transform: uppercase;
+      margin: 16px 0 10px;
     }
 
-    .lead {
-      color: var(--muted);
-      font-size: var(--text-sm);
+    .lead, .sub {
+      font-size: 14px;
       line-height: 1.55;
+      color: var(--muted);
     }
-
-    .input-wrap { margin-top: 22px; }
 
     label {
-      display:block;
-      font-size: var(--text-xs);
+      display: block;
+      margin: 18px 0 10px;
+      font-size: 12px;
       font-weight: 800;
       letter-spacing: .08em;
       text-transform: uppercase;
-      margin-bottom: 10px;
     }
 
     input[type="text"] {
       width: 100%;
-      border: 1px solid var(--line-strong);
-      background: var(--surface-2);
-      color: var(--text);
       min-height: 54px;
       padding: 0 16px;
       border-radius: 18px;
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+      color: var(--text);
       text-transform: uppercase;
-      letter-spacing: .06em;
+      font-weight: 700;
+      letter-spacing: .05em;
+    }
+
+    .feedback {
+      min-height: 24px;
+      margin: 12px 0 0;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .ok { color: var(--ok); }
+    .error { color: var(--danger); }
+
+    .btn {
+      width: 100%;
+      min-height: 54px;
+      margin-top: 12px;
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 800;
+      letter-spacing: .03em;
+    }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(90deg, #111 0%, #252525 42%, #ff4ea6 100%);
+      box-shadow: 0 18px 28px rgba(255,78,166,.22);
+    }
+
+    .allowed {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      font-size: 12px;
       font-weight: 700;
     }
 
-    input[type="text"]:focus {
-      outline: 2px solid var(--accent-2);
-      outline-offset: 2px;
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: 52px 1fr 52px;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 18px;
+      background: rgba(248,245,238,.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
     }
 
-    .btn {
-      min-height: 54px;
-      width: 100%;
-      border: 0;
-      border-radius: 999px;
-      padding: 0 18px;
-      font-weight: 800;
-      letter-spacing: .03em;
+    .icon-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      display: grid;
+      place-items: center;
+      box-shadow: var(--shadow-1);
       cursor: pointer;
-      transition: transform .18s ease, opacity .18s ease, box-shadow .18s e
+      color: var(--text);
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .top-title {
+      text-align: center;
+      font-family: Archivo, Inter, sans-serif;
+      text-transform: uppercase;
+      font-weight: 900;
+      font-size: 1.1rem;
+      letter-spacing: .04em;
+    }
+
+    .content {
+      display: grid;
+      gap: 18px;
+      padding: 18px;
+    }
+
+    .hero {
+      overflow: hidden;
+      border-radius: 30px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow-2);
+    }
+
+    .hero-banner {
+      background: linear-gradient(135deg, #111 0%, #2a2a2a 45%, #ff4ea6 120%);
+      color: #fff;
+      padding: 18px 0;
+      overflow: hidden;
+    }
+
+    .marquee {
+      display: flex;
+      gap: 24px;
+      min-width: max-content;
+      white-space: nowrap;
+      padding-left: 18px;
+      font-family: Archivo, Inter, sans-serif;
+      font-size: 1.02rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      font-weight: 900;
+      animation: scrollX 18s linear infinite;
+    }
+
+    @keyframes scrollX {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .hero-body {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .welcome-box {
+      padding: 16px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 12%, var(--surface)) 0%, var(--surface) 100%);
+      line-height: 1.65;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .stat {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+    }
+
+    .stat b {
+      display: block;
+      font-family: Archivo, Inter, sans-serif;
+      font-size: 1.35rem;
+    }
+
+    .stat span {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 18px;
+      box-shadow: var(--shadow-1);
+    }
+
+    .section h2 {
+      font-size: 1.15rem;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .audio-box,
+    .utility-item,
+    .hotel-item,
+    .cat-block {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+    }
+
+    .audio-box {
+      padding: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .soundcloud-frame {
+      width: 100%;
+      min-height: 300px;
+      border: 0;
+      border-radius: 18px;
+      background: #fff;
+    }
+
+    .soundcloud-credit {
+      font-size: 10px;
+      color: #8a8a8a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-break: anywhere;
+      font-family: Interstate, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda, Verdana, Tahoma, sans-serif;
+    }
+
+    .soundcloud-credit a {
+      color: #8a8a8a;
+    }
+
+    .utility-list,
+    .hotel-list,
+    .cat-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .utility-item,
+    .hotel-item {
+      padding: 14px;
+    }
+
+    .k {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .v, .v a {
+      font-weight: 700;
+      line-height: 1.45;
+      word-break: break-word;
+    }
+
+    .inline-link {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .day {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px dashed rgba(16,16,16,.16);
+    }
+
+    .day:first-of-type {
+      border-top: 0;
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    .day-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .day-head h3 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .chip {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--accent-3) 32%, var(--surface));
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .slot {
+      display: grid;
+      grid-template-columns: 94px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 12px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .slot:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .time {
+      font-family: Archivo, Inter, sans-serif;
+      font-weight: 900;
+      font-size: .95rem;
+    }
+
+    .event {
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    #map {
+      height: 420px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: var(--surface-2);
+    }
+
+    .map-fallback {
+      display: none;
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .cat-image {
+      overflow: hidden;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+      margin-bottom: 14px;
+    }
+
+    .cat-block {
+      padding: 14px;
+      line-height: 1.55;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: min(100%, 430px);
+      padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+      background: rgba(248,245,238,.9);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--line);
+      z-index: 30;
+    }
+
+    .nav-scroll {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav-scroll::-webkit-scrollbar { display: none; }
+
+    .nav-chip {
+      flex: 0 0 auto;
+      min-height: 46px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .nav-chip.active {
+      background: var(--primary);
+      color: var(--bg);
+      border-color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+  <div class="app" id="app">
+    <section class="login-screen" id="loginScreen">
+      <div class="card">
+        <div class="eyebrow">Festival ficticio · Madrid · 30 oct — 1 nov</div>
+        <img src="./assets/logo.jpeg" alt="Logo de Petardea Sound" class="brand" />
+        <h1 class="title">Acceso al Petardeo</h1>
+        <p class="lead">Introduce tu nombre en mayúsculas para confirmar que eres miembro oficial de este comité del descontrol fino. Aquí no hay artistas, pero sí agenda, logística y una fe ciega en aguantar tres días sin perder la dignidad del todo.</p>
+
+        <form id="loginForm">
+          <label for="username">Nombre autorizado</label>
+          <input id="username" type="text" placeholder="ESCRIBE TU NOMBRE" maxlength="20" />
+          <div class="feedback" id="feedback"></div>
+          <button class="btn btn-primary" type="submit">Entrar al recinto</button>
+        </form>
+
+        <div class="allowed">
+          <span class="pill">EDUARDO</span>
+          <span class="pill">CRISTINA</span>
+          <span class="pill">CAROL</span>
+          <span class="pill">IVANA</span>
+        </div>
+      </div>
+    </section>
+
+    <main class="main-screen hidden" id="mainScreen">
+      <header class="topbar">
+        <button class="icon-btn" type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+        <div class="top-title">Petardea Sound</div>
+        <button class="icon-btn" type="button" id="logoutBtn">×</button>
+      </header>
+
+      <div class="content">
+        <section class="hero" id="bienvenida">
+          <div class="hero-banner">
+            <div class="marquee">
+              <span>3 DÍAS, 4 ASISTENTES, NINGÚN ARTISTA, PERO SEREMOS LOS REYES DE LA PISTA.</span>
+              <span>3 DÍAS, 4 ASISTENTES, NINGÚN ARTISTA, PERO SEREMOS LOS REYES DE LA PISTA.</span>
+            </div>
+          </div>
+          <div class="hero-body">
+            <div class="eyebrow">Bienvenidos al evento que no pidió nadie</div>
+            <div class="welcome-box" id="welcomeMessage"></div>
+            <div class="stats">
+              <div class="stat"><b>3</b><span>Días</span></div>
+              <div class="stat"><b>4</b><span>Asistentes</span></div>
+              <div class="stat"><b>∞</b><span>Drama potencial</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="grial">
+          <h2>Santo Grial del Petardeo</h2>
+          <p class="sub">Streaming oficial del delirio con reproductor visual de SoundCloud. [web:41]</p>
+          <div class="audio-box">
+            <iframe
+              class="soundcloud-frame"
+              title="Santo Grial del Petardeo"
+              width="100%"
+              height="300"
+              scrolling="no"
+              frameborder="no"
+              allow="autoplay; encrypted-media"
+              src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2422330332%3Fsecret_token%3Ds-tOO6GqHFniQ&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+            </iframe>
+            <div class="soundcloud-credit">
+              <a href="https://soundcloud.com/eduardo-corredera-876388625" target="_blank" rel="noopener noreferrer">Eduardo.corredera</a>
+              ·
+              <a href="https://soundcloud.com/eduardo-corredera-876388625/edu-petardeo-total-20102026/s-tOO6GqHFniQ" target="_blank" rel="noopener noreferrer">EDU - Petardeo Total - 20102026</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="info">
+          <h2>Información de utilidad</h2>
+          <div class="utility-list">
+            <article class="utility-item">
+              <div class="k">Dirección</div>
+              <div class="v">
+                <a class="inline-link" href="https://maps.apple.com/?q=Paseo%20de%20la%20Direcci%C3%B3n%20162%2C%201208%2C%20Madrid" target="_blank" rel="noopener noreferrer">
+                  Paseo de la Dirección 162, 1208, Madrid
+                </a>
+              </div>
+            </article>
+            <article class="utility-item">
+              <div class="k">Teléfono</div>
+              <div class="v">en los 90 igual…</div>
+            </article>
+            <article class="utility-item">
+              <div class="k">Móvil seguridad</div>
+              <div class="v"><a class="inline-link" href="tel:629580799">629580799</a></div>
+            </article>
+            <article class="utility-item">
+              <div class="k">Red Wifi</div>
+              <div class="v">MOVISTAR-WIFI6-2C00</div>
+            </article>
+            <article class="utility-item">
+              <div class="k">Contraseña Wifi</div>
+              <div class="v">Pídesela al Anfitrión</div>
+            </article>
+            <article class="utility-item">
+              <div class="k">Apunte audiovisual</div>
+              <div class="v">No, no tengo tele sino un monitor. No es por ir de cultureta, es que mi TDH no me permite verla.</div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="horarios">
+          <h2>Horarios</h2>
+
+          <div class="day">
+            <div class="day-head"><h3>Viernes 30 de octubre</h3><span class="chip">Día 1</span></div>
+            <div class="slot"><div class="time">20:00</div><div class="event">Recogida en Atocha</div></div>
+            <div class="slot"><div class="time">20:30</div><div class="event">Acampada usuarios VIP</div></div>
+            <div class="slot"><div class="time">21:00</div><div class="event">Cena</div></div>
+            <div class="slot"><div class="time">23:59</div><div class="event">BRNT with Mathame</div></div>
+            <div class="slot"><div class="time">Hora por confirmar</div><div class="event">Fotosíntesis</div></div>
+          </div>
+
+          <div class="day">
+            <div class="day-head"><h3>Sábado 31 de octubre</h3><span class="chip">Día 2</span></div>
+            <div class="slot"><div class="time">Hora por confirmar</div><div class="event">Resurrección</div></div>
+            <div class="slot"><div class="time">12:00</div><div class="event">Recogida en Atocha</div></div>
+            <div class="slot"><div class="time">12:30</div><div class="event">Acampada</div></div>
+            <div class="slot"><div class="time">13:00</div><div class="event">Charla informativa</div></div>
+            <div class="slot"><div class="time">14:00</div><div class="event">Comida</div></div>
+            <div class="slot"><div class="time">15:30</div><div class="event">Esbarjo</div></div>
+            <div class="slot"><div class="time">17:30</div><div class="event">Tardeo Sala Morocco</div></div>
+            <div class="slot"><div class="time">Hora por confirmar</div><div class="event">Petardeo</div></div>
+          </div>
+
+          <div class="day">
+            <div class="day-head"><h3>Domingo 1 de noviembre</h3><span class="chip">Día 3</span></div>
+            <div class="slot"><div class="time">Estado general</div><div class="event">Con sobrevivir nos damos por satisfechos</div></div>
+            <div class="slot"><div class="time">Hora por confirmar</div><div class="event">Excursión a Atocha (ja!)</div></div>
+          </div>
+        </section>
+
+        <section class="section" id="mapa">
+          <h2>Mapa</h2>
+          <p class="sub">Puntos de interés para no perderse, o para perderse con cierta planificación. [web:42]</p>
+          <div id="map"></div>
+          <div class="map-fallback" id="mapFallback">
+            El mapa no ha cargado, pero los enlaces siguen funcionando desde la sección de información y desde estos puntos básicos:
+            <br><br>
+            <a class="inline-link" href="https://maps.apple.com/?q=Paseo%20de%20la%20Direcci%C3%B3n%20162%2C%201208%2C%20Madrid" target="_blank" rel="noopener noreferrer">Petardea Sound</a><br>
+            <a class="inline-link" href="https://maps.apple.com/?q=Glorieta%20del%20Emperador%20Carlos%20V%2C%20s%2Fn%2C%2028045%20Madrid" target="_blank" rel="noopener noreferrer">Estación de Atocha</a><br>
+            <a class="inline-link" href="https://maps.apple.com/?q=Calle%20del%20Marqu%C3%A9s%20de%20Legan%C3%A9s%2C%207%2C%2028004%20Madrid" target="_blank" rel="noopener noreferrer">Sala Morocco</a>
+          </div>
+        </section>
+
+        <section class="section" id="cacho">
+          <h2>Para ti, que has pillado cacho</h2>
+          <p class="sub">Este recinto es pequeño y aquí se oye todo. Por compasión y caridad humana, no nos paséis por la cara al resto lo bien que os lo estáis pasando y resolved la logística con discreción monástica.</p>
+          <div class="hotel-list">
+            <article class="hotel-item">
+              <div class="k">Luxtal Cuzco</div>
+              <div class="v">Mejores habitaciones por horas en Madrid.</div>
+              <a class="inline-link" href="https://www.luxtal.es/love-hotel/" target="_blank" rel="noopener noreferrer">Abrir web</a>
+            </article>
+            <article class="hotel-item">
+              <div class="k">Rooms Avenida América</div>
+              <div class="v">Si tampoco está tan bueno y no te quieres gastar tanto.</div>
+              <a class="inline-link" href="https://www.roomsmadrid.es/america" target="_blank" rel="noopener noreferrer">Abrir web</a>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="supervivencia">
+          <h2>Manual de supervivencia</h2>
+          <p class="sub">Guía oficial para interactuar con Rolo sin acabar juzgado por el Tribunal Internacional del Gato.</p>
+          <div class="cat-image">
+            <img src="./assets/rolo-guide.jpeg" alt="Infografía sobre dónde acariciar a un gato" />
+          </div>
+          <div class="cat-list">
+            <div class="cat-block"><strong>Acariciar a un gato de forma correcta requiere respetar su espacio y entender su lenguaje corporal para que disfrute de la interacción.</strong></div>
+            <div class="cat-block"><strong>Pasos para iniciar el contacto.</strong> Deja que el gato decida: arrodíllate, extiende tu mano a una altura inferior a su mirada y deja que él se acerque a olerte primero.</div>
+            <div class="cat-block">Usa la regla de las 4 P: las caricias deben ser previsibles, permitidas, placenteras y productivas.</div>
+            <div class="cat-block">Observa el momento: no lo acaricies mientras esté comiendo, lavándose o durmiendo profundamente.</div>
+            <div class="cat-block"><strong>Mejores zonas para acariciar.</strong> Cabeza y mejillas, debajo de la barbilla, detrás de las orejas y espalda a favor del pelo.</div>
+            <div class="cat-block"><strong>Zonas que debes evitar.</strong> La barriga, las patas, la cola y los bigotes.</div>
+            <div class="cat-block"><strong>Señales.</strong> Si ronronea o empuja la cabeza, bien; si mueve la cola con brusquedad o intenta morder, se para.</div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <nav class="bottom-nav hidden" id="bottomNav">
+      <div class="nav-scroll">
+        <button class="nav-chip active" data-target="bienvenida">Bienvenida</button>
+        <button class="nav-chip" data-target="grial">Grial</button>
+        <button class="nav-chip" data-target="info">Utilidad</button>
+        <button class="nav-chip" data-target="horarios">Horarios</button>
+        <button class="nav-chip" data-target="mapa">Mapa</button>
+        <button class="nav-chip" data-target="cacho">Cacho</button>
+        <button class="nav-chip" data-target="supervivencia">Rolo</button>
+      </div>
+    </nav>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const allowed = ['EDUARDO', 'CRISTINA', 'CAROL', 'IVANA'];
+
+    const welcomeByUser = {
+      EDUARDO: 'Bienvenido, EDUARDO. Has desbloqueado el festival más importante del puente: cuatro personas, cero camerinos y una convicción firme de que cualquier salón mejora si se trata como backstage.',
+      CRISTINA: 'Bienvenida, CRISTINA. Gracias por acudir a este congreso de glamour improvisado, logística dudosa y baile sin control horario.',
+      CAROL: 'Bienvenida, CAROL. Entras oficialmente en una producción donde la organización es flexible, el entusiasmo es obligatorio y el petardeo se considera patrimonio inmaterial.',
+      IVANA: 'Bienvenida, IVANA. Accedes a tres días de fantasía doméstico-festivalera, con aforo íntimo y expectativas absurdamente altas.'
+    };
+
+    const loginForm = document.getElementById('loginForm');
+    const username = document.getElementById('username');
+    const feedback = document.getElementById('feedback');
+    const loginScreen = document.getElementById('loginScreen');
+    const mainScreen = document.getElementById('mainScreen');
+    const bottomNav = document.getElementById('bottomNav');
+    const welcomeMessage = document.getElementById('welcomeMessage');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    username.addEventListener('input', () => {
+      username.value = username.value.toUpperCase().replace(/[^A-ZÁÉÍÓÚÜÑ]/g, '');
+    });
+
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = username.value.trim().toUpperCase();
+
+      if (!allowed.includes(name)) {
+        feedback.textContent = 'Nombre no autorizado. Aquí no se cuela nadie sin pedigrí festivo.';
+        feedback.className = 'feedback error';
+        return;
+      }
+
+      feedback.textContent = 'Acceso concedido. Abriendo puertas del Petardea Sound...';
+      feedback.className = 'feedback ok';
+      welcomeMessage.textContent = welcomeByUser[name] || 'Bienvenido al Petardea Sound.';
+      loginScreen.classList.add('hidden');
+      mainScreen.classList.remove('hidden');
+      bottomNav.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(initMapSafe, 150);
+    });
+
+    logoutBtn.addEventListener('click', () => {
+      mainScreen.classList.add('hidden');
+      bottomNav.classList.add('hidden');
+      loginScreen.classList.remove('hidden');
+      username.value = '';
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+    });
+
+    document.querySelectorAll('.nav-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.target;
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          document.querySelectorAll('.nav-chip').forEach(x => x.classList.remove('active'));
+          btn.classList.add('active');
+        }
+      });
+    });
+
+    let mapStarted = false;
+
+    function initMapSafe() {
+      if (mapStarted) return;
+      mapStarted = true;
+
+      try {
+        if (!window.L) throw new Error('Leaflet no disponible');
+
+        const map = L.map('map', {
+          scrollWheelZoom: false
+        }).setView([40.4385, -3.6942], 11);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        const points = [
+          { name: 'Petardea Sound', coords: [40.46829, -3.70115], address: 'Paseo de la Dirección 162, 1208, Madrid', color: '#ff4ea6' },
+          { name: 'Estación de Atocha', coords: [40.40657, -3.68934], address: 'Glorieta del Emperador Carlos V, s/n, 28045 Madrid', color: '#31d6ff' },
+          { name: 'Sala Morocco', coords: [40.42326, -3.70592], address: 'Calle del Marqués de Leganés, 7, 28004 Madrid', color: '#ffd54d' },
+          { name: 'Hospital de la Paz', coords: [40.48056, -3.68822], address: 'Paseo de la Castellana, 261, 28046 Madrid', color: '#ff7c7c' },
+          { name: 'Comisaría de Policía de Tetuán', coords: [40.45968, -3.70374], address: 'Pasaje Maestros Ladrilleros, 2, 28039 Madrid', color: '#9f8cff' },
+          { name: 'Objetos perdidos', coords: [40.39819, -3.69576], address: 'Paseo del Molino, 7, 28045 Madrid', color: '#7adf8c' },
+          { name: 'Tanatorio Norte', coords: [40.49158, -3.69471], address: 'Calle Valdegovía, 8, 28034 Madrid', color: '#8f8f8f' },
+          { name: 'Farmacia Argibay 182', coords: [40.46744, -3.69914], address: 'Calle del Capitán Blanco Argibai 182, 28029 Madrid', color: '#3bb5ff' },
+          { name: 'Paticano (bodas express)', coords: [40.40955, -3.70029], address: 'Travesía de la Primavera, 3, 28012 Madrid', color: '#ff9b4f' },
+          { name: 'Divorcios express', coords: [40.46829, -3.70115], address: 'Preguntar al anfitrión', color: '#111111' }
+        ];
+
+        function markerIcon(color) {
+          return L.divIcon({
+            className: '',
+            html: '<div style="width:18px;height:18px;border-radius:999px;background:' + color + ';border:3px solid white;box-shadow:0 8px 18px rgba(0,0,0,.22)"></div>',
+            iconSize: [18, 18],
+            iconAnchor: [9, 9]
+          });
+        }
+
+        points.forEach(point => {
+          const mapsUrl = 'https://maps.apple.com/?q=' + encodeURIComponent(point.address);
+          L.marker(point.coords, { icon: markerIcon(point.color) })
+            .addTo(map)
+            .bindPopup('<strong>' + point.name + '</strong><br>' + point.address + '<br><a href="' + mapsUrl + '" target="_blank" rel="noopener noreferrer">Abrir en Mapas</a>');
+        });
+
+        setTimeout(() => map.invalidateSize(), 200);
+      } catch (err) {
+        document.getElementById('map').style.display = 'none';
+        document.getElementById('mapFallback').style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
