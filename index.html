@@ -4,8 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Petardea Sound</title>
-  <meta name="theme-color" content="#111111" />
-
+  <meta name="theme-color" content="#141414" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,73 +12,58 @@
 
   <style>
     :root {
-      --bg: #f8f5ee;
-      --surface: #ffffff;
-      --surface-2: #f1ece3;
-      --text: #101010;
-      --muted: #625b50;
-      --line: rgba(16,16,16,.12);
-      --primary: #101010;
-      --accent: #ff4ea6;
-      --accent-2: #31d6ff;
-      --accent-3: #ffd54d;
-      --ok: #16985c;
-      --danger: #be2558;
-      --radius-1: 16px;
-      --radius-2: 24px;
-      --radius-3: 32px;
-      --shadow-1: 0 10px 28px rgba(0,0,0,.08);
-      --shadow-2: 0 18px 44px rgba(0,0,0,.12);
+      --bg: #f5f1e8;
+      --surface: #fffdf8;
+      --surface-2: #efe8dc;
+      --surface-3: #e5dccd;
+      --text: #171717;
+      --muted: #655f56;
+      --line: rgba(23,23,23,.12);
+      --line-strong: rgba(23,23,23,.2);
+      --accent: #8c6a2b;
+      --accent-soft: #d8c7a0;
+      --danger: #a33a46;
+      --ok: #2f7d52;
+      --shadow-1: 0 10px 30px rgba(0,0,0,.07);
+      --shadow-2: 0 18px 40px rgba(0,0,0,.10);
+      --radius-sm: 14px;
+      --radius-md: 22px;
+      --radius-lg: 30px;
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html, body { margin: 0; padding: 0; }
     body {
-      margin: 0;
-      min-height: 100dvh;
+      min-height: 100vh;
       font-family: Inter, system-ui, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top right, rgba(255,78,166,.12), transparent 28%),
-        radial-gradient(circle at top left, rgba(49,214,255,.10), transparent 28%),
+        radial-gradient(circle at top left, rgba(140,106,43,.06), transparent 28%),
+        radial-gradient(circle at top right, rgba(0,0,0,.03), transparent 24%),
         var(--bg);
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
 
-    img, iframe {
-      display: block;
-      max-width: 100%;
-      height: auto;
-    }
+    img, iframe { display: block; max-width: 100%; }
+    button, input { font: inherit; }
+    a { color: inherit; text-decoration: none; }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button, input {
-      font: inherit;
-    }
-
-    .hidden {
-      display: none !important;
-    }
+    .hidden { display: none !important; }
 
     .app {
       width: min(100%, 430px);
-      min-height: 100dvh;
+      min-height: 100vh;
       margin: 0 auto;
       background: color-mix(in srgb, var(--bg) 92%, white 8%);
-      border-inline: 1px solid var(--line);
       position: relative;
       overflow: hidden;
+      border-inline: 1px solid var(--line);
     }
 
     .login-screen,
     .main-screen {
-      min-height: 100dvh;
-      padding-bottom: 92px;
+      min-height: 100vh;
     }
 
     .login-screen {
@@ -91,19 +75,19 @@
     .card {
       background: var(--surface);
       border: 1px solid var(--line);
-      border-radius: var(--radius-3);
+      border-radius: 32px;
       box-shadow: var(--shadow-2);
-      padding: 20px;
+      padding: 22px;
     }
 
     .brand {
       width: 100%;
-      max-height: 150px;
+      max-height: 145px;
       object-fit: contain;
+      background: #fff;
       border-radius: 18px;
       border: 1px solid var(--line);
       padding: 12px;
-      background: #fff;
     }
 
     .eyebrow {
@@ -112,7 +96,8 @@
       gap: 8px;
       padding: 8px 12px;
       border-radius: 999px;
-      background: color-mix(in srgb, var(--accent) 14%, var(--surface));
+      background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+      color: var(--accent);
       font-size: 12px;
       font-weight: 800;
       letter-spacing: .08em;
@@ -121,21 +106,21 @@
     }
 
     h1, h2, h3 {
-      margin: 0;
       font-family: Archivo, Inter, sans-serif;
-      line-height: 1.05;
+      margin: 0;
+      line-height: 1.06;
     }
 
     .title {
-      font-size: clamp(1.8rem, 1.4rem + 1vw, 2.3rem);
+      font-size: clamp(1.85rem, 1.35rem + 1vw, 2.35rem);
+      margin: 18px 0 10px;
       text-transform: uppercase;
-      margin: 16px 0 10px;
     }
 
     .lead, .sub {
+      color: var(--muted);
       font-size: 14px;
       line-height: 1.55;
-      color: var(--muted);
     }
 
     label {
@@ -152,23 +137,23 @@
       min-height: 54px;
       padding: 0 16px;
       border-radius: 18px;
-      border: 1px solid var(--line);
+      border: 1px solid var(--line-strong);
       background: var(--surface-2);
       color: var(--text);
       text-transform: uppercase;
       font-weight: 700;
-      letter-spacing: .05em;
+      letter-spacing: .04em;
     }
 
     .feedback {
       min-height: 24px;
-      margin: 12px 0 0;
+      margin-top: 12px;
       font-size: 14px;
       font-weight: 600;
     }
 
-    .ok { color: var(--ok); }
-    .error { color: var(--danger); }
+    .feedback.ok { color: var(--ok); }
+    .feedback.error { color: var(--danger); }
 
     .btn {
       width: 100%;
@@ -182,9 +167,9 @@
     }
 
     .btn-primary {
-      color: #fff;
-      background: linear-gradient(90deg, #111 0%, #252525 42%, #ff4ea6 100%);
-      box-shadow: 0 18px 28px rgba(255,78,166,.22);
+      background: #171717;
+      color: #f7f3ea;
+      box-shadow: 0 16px 24px rgba(0,0,0,.14);
     }
 
     .allowed {
@@ -197,8 +182,8 @@
     .pill {
       padding: 8px 12px;
       border-radius: 999px;
-      background: var(--surface-2);
       border: 1px solid var(--line);
+      background: var(--surface-2);
       font-size: 12px;
       font-weight: 700;
     }
@@ -206,13 +191,13 @@
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 40;
       display: grid;
       grid-template-columns: 52px 1fr 52px;
       align-items: center;
       gap: 10px;
       padding: 14px 18px;
-      background: rgba(248,245,238,.88);
+      background: rgba(245,241,232,.9);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--line);
     }
@@ -225,41 +210,54 @@
       background: var(--surface);
       display: grid;
       place-items: center;
+      color: var(--text);
       box-shadow: var(--shadow-1);
       cursor: pointer;
-      color: var(--text);
-      font-size: 20px;
-      font-weight: 900;
+    }
+
+    .icon-btn svg {
+      width: 23px;
+      height: 23px;
     }
 
     .top-title {
       text-align: center;
       font-family: Archivo, Inter, sans-serif;
-      text-transform: uppercase;
+      font-size: 1.08rem;
       font-weight: 900;
-      font-size: 1.1rem;
       letter-spacing: .04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .content {
-      display: grid;
-      gap: 18px;
+    .main-body {
       padding: 18px;
     }
 
-    .hero {
-      overflow: hidden;
-      border-radius: 30px;
-      border: 1px solid var(--line);
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    .panel {
       background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 30px;
       box-shadow: var(--shadow-2);
+      overflow: hidden;
     }
 
     .hero-banner {
-      background: linear-gradient(135deg, #111 0%, #2a2a2a 45%, #ff4ea6 120%);
-      color: #fff;
-      padding: 18px 0;
+      background: linear-gradient(135deg, #181818 0%, #262626 100%);
+      color: #f8f4ec;
+      padding: 16px 0;
       overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
 
     .marquee {
@@ -269,29 +267,36 @@
       white-space: nowrap;
       padding-left: 18px;
       font-family: Archivo, Inter, sans-serif;
-      font-size: 1.02rem;
-      text-transform: uppercase;
-      letter-spacing: .05em;
+      font-size: 1rem;
       font-weight: 900;
-      animation: scrollX 18s linear infinite;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      animation: ticker 18s linear infinite;
     }
 
-    @keyframes scrollX {
+    @keyframes ticker {
       from { transform: translateX(0); }
       to { transform: translateX(-50%); }
     }
 
-    .hero-body {
+    .panel-body {
       padding: 18px;
       display: grid;
-      gap: 14px;
+      gap: 16px;
+    }
+
+    .welcome-box,
+    .audio-box,
+    .info-item,
+    .hotel-item,
+    .cat-block {
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+      border-radius: 22px;
     }
 
     .welcome-box {
       padding: 16px;
-      border-radius: 22px;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 12%, var(--surface)) 0%, var(--surface) 100%);
       line-height: 1.65;
     }
 
@@ -305,7 +310,7 @@
       padding: 14px;
       border-radius: 18px;
       border: 1px solid var(--line);
-      background: var(--surface-2);
+      background: var(--surface);
     }
 
     .stat b {
@@ -321,27 +326,14 @@
       letter-spacing: .06em;
     }
 
-    .section {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 18px;
-      box-shadow: var(--shadow-1);
+    .section-head {
+      margin-bottom: 14px;
     }
 
-    .section h2 {
-      font-size: 1.15rem;
+    .section-head h2 {
+      font-size: 1.2rem;
       text-transform: uppercase;
       margin-bottom: 8px;
-    }
-
-    .audio-box,
-    .utility-item,
-    .hotel-item,
-    .cat-block {
-      background: var(--surface-2);
-      border: 1px solid var(--line);
-      border-radius: 20px;
     }
 
     .audio-box {
@@ -354,32 +346,27 @@
       width: 100%;
       min-height: 300px;
       border: 0;
-      border-radius: 18px;
+      border-radius: 16px;
       background: #fff;
     }
 
     .soundcloud-credit {
       font-size: 10px;
-      color: #8a8a8a;
+      color: #888;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      line-break: anywhere;
       font-family: Interstate, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda, Verdana, Tahoma, sans-serif;
     }
 
-    .soundcloud-credit a {
-      color: #8a8a8a;
-    }
+    .soundcloud-credit a { color: #888; }
 
-    .utility-list,
-    .hotel-list,
-    .cat-list {
+    .stack {
       display: grid;
       gap: 12px;
     }
 
-    .utility-item,
+    .info-item,
     .hotel-item {
       padding: 14px;
     }
@@ -405,23 +392,23 @@
     }
 
     .day {
-      margin-top: 16px;
+      border-top: 1px dashed var(--line-strong);
       padding-top: 16px;
-      border-top: 1px dashed rgba(16,16,16,.16);
+      margin-top: 16px;
     }
 
     .day:first-of-type {
       border-top: 0;
-      margin-top: 0;
       padding-top: 0;
+      margin-top: 0;
     }
 
     .day-head {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 10px;
+      gap: 10px;
+      margin-bottom: 12px;
     }
 
     .day-head h3 {
@@ -433,7 +420,8 @@
     .chip {
       padding: 8px 10px;
       border-radius: 999px;
-      background: color-mix(in srgb, var(--accent-3) 32%, var(--surface));
+      background: color-mix(in srgb, var(--accent-soft) 58%, var(--surface));
+      color: #5b4820;
       font-size: 12px;
       font-weight: 800;
     }
@@ -442,9 +430,9 @@
       display: grid;
       grid-template-columns: 94px 1fr;
       gap: 12px;
-      align-items: start;
       padding: 12px 0;
       border-top: 1px solid var(--line);
+      align-items: start;
     }
 
     .slot:first-child {
@@ -465,22 +453,16 @@
 
     #map {
       height: 420px;
-      border-radius: 22px;
+      border-radius: 20px;
       border: 1px solid var(--line);
       overflow: hidden;
       background: var(--surface-2);
     }
 
-    .map-fallback {
-      display: none;
+    .map-note {
       margin-top: 12px;
-      padding: 14px;
-      border-radius: 18px;
-      border: 1px solid var(--line);
-      background: var(--surface-2);
-      font-size: 14px;
       color: var(--muted);
-      line-height: 1.55;
+      font-size: 14px;
     }
 
     .cat-image {
@@ -494,66 +476,102 @@
     .cat-block {
       padding: 14px;
       line-height: 1.55;
+      margin-bottom: 12px;
     }
 
-    .bottom-nav {
+    .drawer {
       position: fixed;
-      left: 50%;
+      inset: 0;
+      background: rgba(0,0,0,.28);
+      z-index: 60;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease;
+    }
+
+    .drawer.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .drawer-panel {
+      position: absolute;
+      top: 0;
+      left: 0;
       bottom: 0;
-      transform: translateX(-50%);
-      width: min(100%, 430px);
-      padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
-      background: rgba(248,245,238,.9);
-      backdrop-filter: blur(16px);
-      border-top: 1px solid var(--line);
-      z-index: 30;
-    }
-
-    .nav-scroll {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .nav-scroll::-webkit-scrollbar { display: none; }
-
-    .nav-chip {
-      flex: 0 0 auto;
-      min-height: 46px;
-      padding: 0 16px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
+      width: min(84vw, 330px);
       background: var(--surface);
-      color: var(--text);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      cursor: pointer;
+      border-right: 1px solid var(--line);
+      box-shadow: var(--shadow-2);
+      transform: translateX(-100%);
+      transition: transform .24s ease;
+      padding: 18px;
+      display: grid;
+      gap: 16px;
     }
 
-    .nav-chip.active {
-      background: var(--primary);
-      color: var(--bg);
-      border-color: var(--primary);
+    .drawer.open .drawer-panel {
+      transform: translateX(0);
+    }
+
+    .menu-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .menu-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .menu-link {
+      width: 100%;
+      min-height: 52px;
+      padding: 0 14px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-transform: uppercase;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .03em;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    .menu-link.active {
+      background: #171717;
+      color: #f6f1e7;
+      border-color: #171717;
+    }
+
+    .menu-foot {
+      margin-top: auto;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
     }
   </style>
 </head>
 <body>
-  <div class="app" id="app">
+  <div class="app">
     <section class="login-screen" id="loginScreen">
       <div class="card">
         <div class="eyebrow">Festival ficticio · Madrid · 30 oct — 1 nov</div>
         <img src="./assets/logo.jpeg" alt="Logo de Petardea Sound" class="brand" />
         <h1 class="title">Acceso al Petardeo</h1>
-        <p class="lead">Introduce tu nombre en mayúsculas para confirmar que eres miembro oficial de este comité del descontrol fino. Aquí no hay artistas, pero sí agenda, logística y una fe ciega en aguantar tres días sin perder la dignidad del todo.</p>
+        <p class="lead">Introduce tu nombre en mayúsculas para confirmar que eres parte del selecto comité del descontrol elegante. Aquí no hay artistas, pero sí organización, agenda y una absurda confianza en que todo va a salir razonablemente bien.</p>
 
         <form id="loginForm">
           <label for="username">Nombre autorizado</label>
           <input id="username" type="text" placeholder="ESCRIBE TU NOMBRE" maxlength="20" />
           <div class="feedback" id="feedback"></div>
-          <button class="btn btn-primary" type="submit">Entrar al recinto</button>
+          <button class="btn btn-primary" type="submit">Entrar</button>
         </form>
 
         <div class="allowed">
@@ -567,169 +585,237 @@
 
     <main class="main-screen hidden" id="mainScreen">
       <header class="topbar">
-        <button class="icon-btn" type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-        <div class="top-title">Petardea Sound</div>
-        <button class="icon-btn" type="button" id="logoutBtn">×</button>
+        <button class="icon-btn" id="menuBtn" aria-label="Abrir menú">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <path d="M3 6h18M3 12h18M3 18h18"/>
+          </svg>
+        </button>
+        <div class="top-title" id="topTitle">Bienvenida</div>
+        <button class="icon-btn" id="logoutBtn" aria-label="Cerrar sesión">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <path d="M16 17l5-5-5-5"/>
+            <path d="M21 12H9"/>
+          </svg>
+        </button>
       </header>
 
-      <div class="content">
-        <section class="hero" id="bienvenida">
-          <div class="hero-banner">
-            <div class="marquee">
-              <span>3 DÍAS, 4 ASISTENTES, NINGÚN ARTISTA, PERO SEREMOS LOS REYES DE LA PISTA.</span>
-              <span>3 DÍAS, 4 ASISTENTES, NINGÚN ARTISTA, PERO SEREMOS LOS REYES DE LA PISTA.</span>
+      <div class="main-body">
+        <section class="view active" id="view-bienvenida">
+          <div class="panel">
+            <div class="hero-banner">
+              <div class="marquee">
+                <span>3 DÍAS, 4 ASISTENTES, NINGÚN ARTISTA, PERO SEREMOS LOS REYES DE LA PISTA.</span>
+                <span>3 DÍAS, 4 ASISTENTES, NINGÚN ARTISTA, PERO SEREMOS LOS REYES DE LA PISTA.</span>
+              </div>
             </div>
-          </div>
-          <div class="hero-body">
-            <div class="eyebrow">Bienvenidos al evento que no pidió nadie</div>
-            <div class="welcome-box" id="welcomeMessage"></div>
-            <div class="stats">
-              <div class="stat"><b>3</b><span>Días</span></div>
-              <div class="stat"><b>4</b><span>Asistentes</span></div>
-              <div class="stat"><b>∞</b><span>Drama potencial</span></div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="grial">
-          <h2>Santo Grial del Petardeo</h2>
-          <p class="sub">Streaming oficial del delirio con reproductor visual de SoundCloud. [web:41]</p>
-          <div class="audio-box">
-            <iframe
-              class="soundcloud-frame"
-              title="Santo Grial del Petardeo"
-              width="100%"
-              height="300"
-              scrolling="no"
-              frameborder="no"
-              allow="autoplay; encrypted-media"
-              src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2422330332%3Fsecret_token%3Ds-tOO6GqHFniQ&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
-            </iframe>
-            <div class="soundcloud-credit">
-              <a href="https://soundcloud.com/eduardo-corredera-876388625" target="_blank" rel="noopener noreferrer">Eduardo.corredera</a>
-              ·
-              <a href="https://soundcloud.com/eduardo-corredera-876388625/edu-petardeo-total-20102026/s-tOO6GqHFniQ" target="_blank" rel="noopener noreferrer">EDU - Petardeo Total - 20102026</a>
+            <div class="panel-body">
+              <div class="eyebrow">Bienvenidos al evento que no pidió nadie</div>
+              <div class="welcome-box" id="welcomeMessage"></div>
+              <div class="stats">
+                <div class="stat"><b>3</b><span>Días</span></div>
+                <div class="stat"><b>4</b><span>Asistentes</span></div>
+                <div class="stat"><b>∞</b><span>Drama potencial</span></div>
+              </div>
             </div>
           </div>
         </section>
 
-        <section class="section" id="info">
-          <h2>Información de utilidad</h2>
-          <div class="utility-list">
-            <article class="utility-item">
-              <div class="k">Teléfono</div>
-              <div class="v">en los 90 igual…</div>
-            </article>
-            <article class="utility-item">
-              <div class="k">Móvil seguridad</div>
-              <div class="v"><a class="inline-link" href="tel:629580799">629580799</a></div>
-            </article>
-            <article class="utility-item">
-              <div class="k">Red Wifi</div>
-              <div class="v">MOVISTAR-WIFI6-2C00</div>
-            </article>
-            <article class="utility-item">
-              <div class="k">Contraseña Wifi</div>
-              <div class="v">Pídesela al Anfitrión</div>
-            </article>
-            <article class="utility-item">
-              <div class="k">Apunte audiovisual</div>
-              <div class="v">No, no tengo tele sino un monitor. No es por ir de cultureta, es que mi TDH no me permite verla.</div>
-            </article>
+        <section class="view" id="view-grial">
+          <div class="panel">
+            <div class="panel-body">
+              <div class="section-head">
+                <h2>Santo Grial del Petardeo</h2>
+                <p class="sub">Streaming oficial del delirio con reproductor visual de SoundCloud. [web:41]</p>
+              </div>
+              <div class="audio-box">
+                <iframe
+                  class="soundcloud-frame"
+                  title="Santo Grial del Petardeo"
+                  width="100%"
+                  height="300"
+                  scrolling="no"
+                  frameborder="no"
+                  allow="autoplay; encrypted-media"
+                  src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2422330332%3Fsecret_token%3Ds-tOO6GqHFniQ&color=%23141414&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+                </iframe>
+                <div class="soundcloud-credit">
+                  <a href="https://soundcloud.com/eduardo-corredera-876388625" target="_blank" rel="noopener noreferrer">Eduardo.corredera</a>
+                  ·
+                  <a href="https://soundcloud.com/eduardo-corredera-876388625/edu-petardeo-total-20102026/s-tOO6GqHFniQ" target="_blank" rel="noopener noreferrer">EDU - Petardeo Total - 20102026</a>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
-        <section class="section" id="horarios">
-          <h2>Horarios</h2>
-
-          <div class="day">
-            <div class="day-head"><h3>Viernes 30 de octubre</h3><span class="chip">Día 1</span></div>
-            <div class="slot"><div class="time">20:00</div><div class="event">Recogida en Atocha</div></div>
-            <div class="slot"><div class="time">20:30</div><div class="event">Acampada usuarios VIP</div></div>
-            <div class="slot"><div class="time">21:00</div><div class="event">Cena</div></div>
-            <div class="slot"><div class="time">23:59</div><div class="event">BRNT with Mathame</div></div>
-            <div class="slot"><div class="time">Hora por confirmar</div><div class="event">Fotosíntesis</div></div>
-          </div>
-
-          <div class="day">
-            <div class="day-head"><h3>Sábado 31 de octubre</h3><span class="chip">Día 2</span></div>
-            <div class="slot"><div class="time">Hora por confirmar</div><div class="event">Resurrección</div></div>
-            <div class="slot"><div class="time">12:00</div><div class="event">Recogida en Atocha</div></div>
-            <div class="slot"><div class="time">12:30</div><div class="event">Acampada</div></div>
-            <div class="slot"><div class="time">13:00</div><div class="event">Charla informativa</div></div>
-            <div class="slot"><div class="time">14:00</div><div class="event">Comida</div></div>
-            <div class="slot"><div class="time">15:30</div><div class="event">Esbarjo</div></div>
-            <div class="slot"><div class="time">17:30</div><div class="event">Tardeo Sala Morocco</div></div>
-            <div class="slot"><div class="time">Hora por confirmar</div><div class="event">Petardeo</div></div>
-          </div>
-
-          <div class="day">
-            <div class="day-head"><h3>Domingo 1 de noviembre</h3><span class="chip">Día 3</span></div>
-            <div class="slot"><div class="time">Estado general</div><div class="event">Con sobrevivir nos damos por satisfechos</div></div>
-            <div class="slot"><div class="time">Hora por confirmar</div><div class="event">Excursión a Atocha (ja!)</div></div>
-          </div>
-        </section>
-
-        <section class="section" id="mapa">
-          <h2>Mapa</h2>
-          <p class="sub">Puntos de interés para no perderse, o para perderse con cierta planificación. [web:42]</p>
-          <div id="map"></div>
-          <div class="map-fallback" id="mapFallback">
-            El mapa no ha cargado, pero los enlaces siguen funcionando desde la sección de información y desde estos puntos básicos:
-            <br><br>
-            <a class="inline-link" href="https://maps.apple.com/?q=Paseo%20de%20la%20Direcci%C3%B3n%20162%2C%201208%2C%20Madrid" target="_blank" rel="noopener noreferrer">Petardea Sound</a><br>
-            <a class="inline-link" href="https://maps.apple.com/?q=Glorieta%20del%20Emperador%20Carlos%20V%2C%20s%2Fn%2C%2028045%20Madrid" target="_blank" rel="noopener noreferrer">Estación de Atocha</a><br>
-            <a class="inline-link" href="https://maps.apple.com/?q=Calle%20del%20Marqu%C3%A9s%20de%20Legan%C3%A9s%2C%207%2C%2028004%20Madrid" target="_blank" rel="noopener noreferrer">Sala Morocco</a>
+        <section class="view" id="view-info">
+          <div class="panel">
+            <div class="panel-body">
+              <div class="section-head">
+                <h2>Información de utilidad</h2>
+              </div>
+              <div class="stack">
+                <article class="info-item">
+                  <div class="k">Dirección</div>
+                  <div class="v">
+                    <a class="inline-link" href="https://maps.apple.com/?q=Paseo%20de%20la%20Direcci%C3%B3n%20162%2C%201208%2C%20Madrid" target="_blank" rel="noopener noreferrer">
+                      Paseo de la Dirección 162, 1208, Madrid
+                    </a>
+                  </div>
+                </article>
+                <article class="info-item">
+                  <div class="k">Teléfono</div>
+                  <div class="v">en los 90 igual…</div>
+                </article>
+                <article class="info-item">
+                  <div class="k">Móvil seguridad</div>
+                  <div class="v"><a class="inline-link" href="tel:629580799">629580799</a></div>
+                </article>
+                <article class="info-item">
+                  <div class="k">Red Wifi</div>
+                  <div class="v">MOVISTAR-WIFI6-2C00</div>
+                </article>
+                <article class="info-item">
+                  <div class="k">Contraseña Wifi</div>
+                  <div class="v">Pídesela al Anfitrión</div>
+                </article>
+                <article class="info-item">
+                  <div class="k">Apunte audiovisual</div>
+                  <div class="v">No, no tengo tele sino un monitor. No es por ir de cultureta, es que mi TDH no me permite verla.</div>
+                </article>
+              </div>
+            </div>
           </div>
         </section>
 
-        <section class="section" id="cacho">
-          <h2>Para ti, que has pillado cacho</h2>
-          <p class="sub">Este recinto es pequeño y aquí se oye todo. Por compasión y caridad humana, no nos paséis por la cara al resto lo bien que os lo estáis pasando y resolved la logística con discreción monástica.</p>
-          <div class="hotel-list">
-            <article class="hotel-item">
-              <div class="k">Luxtal Cuzco</div>
-              <div class="v">Mejores habitaciones por horas en Madrid.</div>
-              <a class="inline-link" href="https://www.luxtal.es/love-hotel/" target="_blank" rel="noopener noreferrer">Abrir web</a>
-            </article>
-            <article class="hotel-item">
-              <div class="k">Rooms Avenida América</div>
-              <div class="v">Si tampoco está tan bueno y no te quieres gastar tanto.</div>
-              <a class="inline-link" href="https://www.roomsmadrid.es/america" target="_blank" rel="noopener noreferrer">Abrir web</a>
-            </article>
+        <section class="view" id="view-horarios">
+          <div class="panel">
+            <div class="panel-body">
+              <div class="section-head">
+                <h2>Horarios</h2>
+              </div>
+
+              <div class="day">
+                <div class="day-head"><h3>Viernes 30 de octubre</h3><span class="chip">Día 1</span></div>
+                <div class="slot"><div class="time">20:00</div><div class="event">Recogida en Atocha</div></div>
+                <div class="slot"><div class="time">20:30</div><div class="event">Acampada usuarios VIP</div></div>
+                <div class="slot"><div class="time">21:00</div><div class="event">Cena</div></div>
+                <div class="slot"><div class="time">23:59</div><div class="event">BRNT with Mathame</div></div>
+                <div class="slot"><div class="time">Hora por confirmar</div><div class="event">Fotosíntesis</div></div>
+              </div>
+
+              <div class="day">
+                <div class="day-head"><h3>Sábado 31 de octubre</h3><span class="chip">Día 2</span></div>
+                <div class="slot"><div class="time">Hora por confirmar</div><div class="event">Resurrección</div></div>
+                <div class="slot"><div class="time">12:00</div><div class="event">Recogida en Atocha</div></div>
+                <div class="slot"><div class="time">12:30</div><div class="event">Acampada</div></div>
+                <div class="slot"><div class="time">13:00</div><div class="event">Charla informativa</div></div>
+                <div class="slot"><div class="time">14:00</div><div class="event">Comida</div></div>
+                <div class="slot"><div class="time">15:30</div><div class="event">Esbarjo</div></div>
+                <div class="slot"><div class="time">17:30</div><div class="event">Tardeo Sala Morocco</div></div>
+                <div class="slot"><div class="time">Hora por confirmar</div><div class="event">Petardeo</div></div>
+              </div>
+
+              <div class="day">
+                <div class="day-head"><h3>Domingo 1 de noviembre</h3><span class="chip">Día 3</span></div>
+                <div class="slot"><div class="time">Estado general</div><div class="event">Con sobrevivir nos damos por satisfechos</div></div>
+                <div class="slot"><div class="time">Hora por confirmar</div><div class="event">Excursión a Atocha (ja!)</div></div>
+              </div>
+            </div>
           </div>
         </section>
 
-        <section class="section" id="supervivencia">
-          <h2>Manual de supervivencia</h2>
-          <p class="sub">Guía oficial para interactuar con Rolo sin acabar juzgado por el Tribunal Internacional del Gato.</p>
-          <div class="cat-image">
-            <img src="./assets/rolo-guide.jpeg" alt="Infografía sobre dónde acariciar a un gato" />
+        <section class="view" id="view-mapa">
+          <div class="panel">
+            <div class="panel-body">
+              <div class="section-head">
+                <h2>Mapa</h2>
+                <p class="sub">Puntos de interés para no perderse, o para perderse con cierta planificación. [web:42]</p>
+              </div>
+              <div id="map"></div>
+              <div class="map-note">Pulsa un marcador para abrir la ruta en Mapas.</div>
+            </div>
           </div>
-          <div class="cat-list">
-            <div class="cat-block"><strong>Acariciar a un gato de forma correcta requiere respetar su espacio y entender su lenguaje corporal para que disfrute de la interacción.</strong></div>
-            <div class="cat-block"><strong>Pasos para iniciar el contacto.</strong> Deja que el gato decida: arrodíllate, extiende tu mano a una altura inferior a su mirada y deja que él se acerque a olerte primero.</div>
-            <div class="cat-block">Usa la regla de las 4 P: las caricias deben ser previsibles, permitidas, placenteras y productivas.</div>
-            <div class="cat-block">Observa el momento: no lo acaricies mientras esté comiendo, lavándose o durmiendo profundamente.</div>
-            <div class="cat-block"><strong>Mejores zonas para acariciar.</strong> Cabeza y mejillas, debajo de la barbilla, detrás de las orejas y espalda a favor del pelo.</div>
-            <div class="cat-block"><strong>Zonas que debes evitar.</strong> La barriga, las patas, la cola y los bigotes.</div>
-            <div class="cat-block"><strong>Señales.</strong> Si ronronea o empuja la cabeza, bien; si mueve la cola con brusquedad o intenta morder, se para.</div>
+        </section>
+
+        <section class="view" id="view-cacho">
+          <div class="panel">
+            <div class="panel-body">
+              <div class="section-head">
+                <h2>Para ti, que has pillado cacho</h2>
+                <p class="sub">El recinto es pequeño y aquí se oye todo. Por compasión y caridad humana, no nos paséis por la cara al resto lo bien que os lo estáis pasando y resolved la logística con discreción civilizada.</p>
+              </div>
+              <div class="stack">
+                <article class="hotel-item">
+                  <div class="k">Luxtal Cuzco</div>
+                  <div class="v">Mejores habitaciones por horas en Madrid.</div>
+                  <a class="inline-link" href="https://www.luxtal.es/love-hotel/" target="_blank" rel="noopener noreferrer">Abrir web</a>
+                </article>
+                <article class="hotel-item">
+                  <div class="k">Rooms Avenida América</div>
+                  <div class="v">Si tampoco está tan bueno y no te quieres gastar tanto.</div>
+                  <a class="inline-link" href="https://www.roomsmadrid.es/america" target="_blank" rel="noopener noreferrer">Abrir web</a>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="view-supervivencia">
+          <div class="panel">
+            <div class="panel-body">
+              <div class="section-head">
+                <h2>Manual de supervivencia</h2>
+                <p class="sub">Guía oficial para interactuar con Rolo sin acabar en conflicto diplomático.</p>
+              </div>
+
+              <div class="cat-image">
+                <img src="./assets/rolo-guide.jpeg" alt="Infografía sobre dónde acariciar a un gato" />
+              </div>
+
+              <div class="cat-block"><strong>Acariciar a un gato de forma correcta requiere respetar su espacio y entender su lenguaje corporal para que disfrute de la interacción.</strong></div>
+              <div class="cat-block"><strong>Pasos para iniciar el contacto.</strong> Deja que el gato decida: arrodíllate, extiende tu mano a una altura inferior a su mirada y deja que él se acerque a olerte primero.</div>
+              <div class="cat-block">Usa la regla de las 4 P: las caricias deben ser previsibles, permitidas, placenteras y productivas.</div>
+              <div class="cat-block">Observa el momento: no lo acaricies mientras esté comiendo, lavándose o durmiendo profundamente.</div>
+              <div class="cat-block"><strong>Mejores zonas para acariciar.</strong> Cabeza y mejillas, debajo de la barbilla, detrás de las orejas y espalda en el sentido del pelo.</div>
+              <div class="cat-block"><strong>Zonas a evitar.</strong> La barriga, las patas, la cola y los bigotes.</div>
+              <div class="cat-block"><strong>Señales.</strong> Si ronronea, entrecierra los ojos o empuja la cabeza, bien; si mueve la cola con brusquedad, se tensa o se aleja, se para.</div>
+            </div>
           </div>
         </section>
       </div>
     </main>
 
-    <nav class="bottom-nav hidden" id="bottomNav">
-      <div class="nav-scroll">
-        <button class="nav-chip active" data-target="bienvenida">Bienvenida</button>
-        <button class="nav-chip" data-target="grial">Grial</button>
-        <button class="nav-chip" data-target="info">Utilidad</button>
-        <button class="nav-chip" data-target="horarios">Horarios</button>
-        <button class="nav-chip" data-target="mapa">Mapa</button>
-        <button class="nav-chip" data-target="cacho">Cacho</button>
-        <button class="nav-chip" data-target="supervivencia">Rolo</button>
+    <aside class="drawer" id="drawer" aria-hidden="true">
+      <div class="drawer-panel">
+        <div class="menu-head">
+          <div>
+            <div class="k">Menú</div>
+            <h2 style="margin-top:6px;">Petardea Sound</h2>
+          </div>
+          <button class="icon-btn" id="closeDrawer" aria-label="Cerrar menú">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <path d="M6 6l12 12M18 6l-12 12"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="menu-list">
+          <button class="menu-link active" data-view="bienvenida">Bienvenida <span>→</span></button>
+          <button class="menu-link" data-view="grial">Santo Grial <span>→</span></button>
+          <button class="menu-link" data-view="info">Información útil <span>→</span></button>
+          <button class="menu-link" data-view="horarios">Horarios <span>→</span></button>
+          <button class="menu-link" data-view="mapa">Mapa <span>→</span></button>
+          <button class="menu-link" data-view="cacho">Has pillado cacho <span>→</span></button>
+          <button class="menu-link" data-view="supervivencia">Manual de Rolo <span>→</span></button>
+        </div>
+
+        <div class="menu-foot">
+          Navega por secciones desde aquí. Sin scroll infinito, sin feria cromática, sin barroquismo innecesario.
+        </div>
       </div>
-    </nav>
+    </aside>
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -737,10 +823,10 @@
     const allowed = ['EDUARDO', 'CRISTINA', 'CAROL', 'IVANA'];
 
     const welcomeByUser = {
-      EDUARDO: 'Bienvenido, EDUARDO. Has desbloqueado el festival más importante del puente: cuatro personas, cero camerinos y una convicción firme de que cualquier salón mejora si se trata como backstage.',
-      CRISTINA: 'Bienvenida, CRISTINA. Gracias por acudir a este congreso de glamour improvisado, logística dudosa y baile sin control horario.',
+      EDUARDO: 'Bienvenido, EDUARDO. Has desbloqueado el festival más importante del puente: cuatro personas, cero camerinos y una convicción firme de que cualquier salón mejora si se trata como backstage. Gestiona el caos con elegancia.',
+      CRISTINA: 'Bienvenida, CRISTINA. Gracias por acudir a este congreso de glamour improvisado, logística dudosa y baile sin control horario. Mantén el nivel y que no decaiga el porte.',
       CAROL: 'Bienvenida, CAROL. Entras oficialmente en una producción donde la organización es flexible, el entusiasmo es obligatorio y el petardeo se considera patrimonio inmaterial.',
-      IVANA: 'Bienvenida, IVANA. Accedes a tres días de fantasía doméstico-festivalera, con aforo íntimo y expectativas absurdamente altas.'
+      IVANA: 'Bienvenida, IVANA. Accedes a tres días de fantasía doméstico-festivalera, con aforo íntimo y expectativas absurdamente altas. Sostén la pista con dignidad.'
     };
 
     const loginForm = document.getElementById('loginForm');
@@ -748,15 +834,23 @@
     const feedback = document.getElementById('feedback');
     const loginScreen = document.getElementById('loginScreen');
     const mainScreen = document.getElementById('mainScreen');
-    const bottomNav = document.getElementById('bottomNav');
     const welcomeMessage = document.getElementById('welcomeMessage');
+    const topTitle = document.getElementById('topTitle');
+    const drawer = document.getElementById('drawer');
+    const menuBtn = document.getElementById('menuBtn');
+    const closeDrawer = document.getElementById('closeDrawer');
     const logoutBtn = document.getElementById('logoutBtn');
+    const views = document.querySelectorAll('.view');
+    const menuLinks = document.querySelectorAll('.menu-link');
+
+    let mapStarted = false;
+    let mapInstance = null;
 
     username.addEventListener('input', () => {
       username.value = username.value.toUpperCase().replace(/[^A-ZÁÉÍÓÚÜÑ]/g, '');
     });
 
-    loginForm.addEventListener('submit', function (e) {
+    loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const name = username.value.trim().toUpperCase();
 
@@ -766,65 +860,99 @@
         return;
       }
 
-      feedback.textContent = 'Acceso concedido. Abriendo puertas del Petardea Sound...';
+      feedback.textContent = 'Acceso concedido. Bienvenido al recinto.';
       feedback.className = 'feedback ok';
       welcomeMessage.textContent = welcomeByUser[name] || 'Bienvenido al Petardea Sound.';
       loginScreen.classList.add('hidden');
       mainScreen.classList.remove('hidden');
-      bottomNav.classList.remove('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      setTimeout(initMapSafe, 150);
+      switchView('bienvenida');
     });
 
     logoutBtn.addEventListener('click', () => {
       mainScreen.classList.add('hidden');
-      bottomNav.classList.add('hidden');
       loginScreen.classList.remove('hidden');
+      drawer.classList.remove('open');
+      drawer.setAttribute('aria-hidden', 'true');
       username.value = '';
       feedback.textContent = '';
       feedback.className = 'feedback';
     });
 
-    document.querySelectorAll('.nav-chip').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const id = btn.dataset.target;
-        const el = document.getElementById(id);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          document.querySelectorAll('.nav-chip').forEach(x => x.classList.remove('active'));
-          btn.classList.add('active');
-        }
+    menuBtn.addEventListener('click', () => {
+      drawer.classList.add('open');
+      drawer.setAttribute('aria-hidden', 'false');
+    });
+
+    closeDrawer.addEventListener('click', closeMenu);
+    drawer.addEventListener('click', (e) => {
+      if (e.target === drawer) closeMenu();
+    });
+
+    function closeMenu() {
+      drawer.classList.remove('open');
+      drawer.setAttribute('aria-hidden', 'true');
+    }
+
+    function switchView(name) {
+      views.forEach(view => {
+        view.classList.toggle('active', view.id === 'view-' + name);
+      });
+
+      menuLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.view === name);
+      });
+
+      const titles = {
+        bienvenida: 'Bienvenida',
+        grial: 'Santo Grial',
+        info: 'Información útil',
+        horarios: 'Horarios',
+        mapa: 'Mapa',
+        cacho: 'Has pillado cacho',
+        supervivencia: 'Manual de Rolo'
+      };
+
+      topTitle.textContent = titles[name] || 'Petardea Sound';
+      closeMenu();
+
+      if (name === 'mapa') {
+        setTimeout(initMap, 120);
+      }
+    }
+
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        switchView(link.dataset.view);
       });
     });
 
-    let mapStarted = false;
-
-    function initMapSafe() {
-      if (mapStarted) return;
-      mapStarted = true;
+    function initMap() {
+      if (mapStarted) {
+        if (mapInstance) {
+          setTimeout(() => mapInstance.invalidateSize(), 120);
+        }
+        return;
+      }
 
       try {
-        if (!window.L) throw new Error('Leaflet no disponible');
-
-        const map = L.map('map', {
-          scrollWheelZoom: false
-        }).setView([40.4385, -3.6942], 11);
+        mapStarted = true;
+        mapInstance = L.map('map', { scrollWheelZoom: false }).setView([40.4385, -3.6942], 11);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '&copy; OpenStreetMap contributors'
-        }).addTo(map);
+        }).addTo(mapInstance);
 
         const points = [
-          { name: 'Petardea Sound', coords: [40.46829, -3.70115], address: 'Paseo de la Dirección 162, 1208, Madrid', color: '#ff4ea6' },
-          { name: 'Estación de Atocha', coords: [40.40657, -3.68934], address: 'Glorieta del Emperador Carlos V, s/n, 28045 Madrid', color: '#31d6ff' },
-          { name: 'Sala Morocco', coords: [40.42326, -3.70592], address: 'Calle del Marqués de Leganés, 7, 28004 Madrid', color: '#ffd54d' },
-          { name: 'Hospital de la Paz', coords: [40.48056, -3.68822], address: 'Paseo de la Castellana, 261, 28046 Madrid', color: '#ff7c7c' },
-          { name: 'Comisaría de Policía de Tetuán', coords: [40.45968, -3.70374], address: 'Pasaje Maestros Ladrilleros, 2, 28039 Madrid', color: '#9f8cff' },
-          { name: 'Objetos perdidos', coords: [40.39819, -3.69576], address: 'Paseo del Molino, 7, 28045 Madrid', color: '#7adf8c' },
-          { name: 'Tanatorio Norte', coords: [40.49158, -3.69471], address: 'Calle Valdegovía, 8, 28034 Madrid', color: '#8f8f8f' },
-          { name: 'Farmacia Argibay 182', coords: [40.46744, -3.69914], address: 'Calle del Capitán Blanco Argibai 182, 28029 Madrid', color: '#3bb5ff' },
-          { name: 'Paticano (bodas express)', coords: [40.40955, -3.70029], address: 'Travesía de la Primavera, 3, 28012 Madrid', color: '#ff9b4f' },
-          { name: 'Divorcios express', coords: [40.46829, -3.70115], address: 'Preguntar al anfitrión', color: '#111111' }
+          { name: 'Petardea Sound', coords: [40.46829, -3.70115], address: 'Paseo de la Dirección 162, 1208, Madrid', color: '#8c6a2b' },
+          { name: 'Estación de Atocha', coords: [40.40657, -3.68934], address: 'Glorieta del Emperador Carlos V, s/n, 28045 Madrid', color: '#2f4858' },
+          { name: 'Sala Morocco', coords: [40.42326, -3.70592], address: 'Calle del Marqués de Leganés, 7, 28004 Madrid', color: '#b18b43' },
+          { name: 'Hospital de la Paz', coords: [40.48056, -3.68822], address: 'Paseo de la Castellana, 261, 28046 Madrid', color: '#7a8f63' },
+          { name: 'Comisaría de Policía de Tetuán', coords: [40.45968, -3.70374], address: 'Pasaje Maestros Ladrilleros, 2, 28039 Madrid', color: '#4e5a6a' },
+          { name: 'Objetos perdidos', coords: [40.39819, -3.69576], address: 'Paseo del Molino, 7, 28045 Madrid', color: '#8b6f47' },
+          { name: 'Tanatorio Norte', coords: [40.49158, -3.69471], address: 'Calle Valdegovía, 8, 28034 Madrid', color: '#555555' },
+          { name: 'Farmacia Argibay 182', coords: [40.46744, -3.69914], address: 'Calle del Capitán Blanco Argibai 182, 28029 Madrid', color: '#768f6d' },
+          { name: 'Paticano (bodas express)', coords: [40.40955, -3.70029], address: 'Travesía de la Primavera, 3, 28012 Madrid', color: '#8a7550' },
+          { name: 'Divorcios express', coords: [40.46829, -3.70115], address: 'Preguntar al anfitrión', color: '#171717' }
         ];
 
         function markerIcon(color) {
@@ -839,14 +967,13 @@
         points.forEach(point => {
           const mapsUrl = 'https://maps.apple.com/?q=' + encodeURIComponent(point.address);
           L.marker(point.coords, { icon: markerIcon(point.color) })
-            .addTo(map)
+            .addTo(mapInstance)
             .bindPopup('<strong>' + point.name + '</strong><br>' + point.address + '<br><a href="' + mapsUrl + '" target="_blank" rel="noopener noreferrer">Abrir en Mapas</a>');
         });
 
-        setTimeout(() => map.invalidateSize(), 200);
-      } catch (err) {
-        document.getElementById('map').style.display = 'none';
-        document.getElementById('mapFallback').style.display = 'block';
+        setTimeout(() => mapInstance.invalidateSize(), 180);
+      } catch (e) {
+        document.getElementById('map').innerHTML = '<div style="padding:18px;color:#655f56;">No se pudo cargar el mapa.</div>';
       }
     }
   </script>
