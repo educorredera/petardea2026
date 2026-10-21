@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Petardea Sound v11 Fix</title>
+  <title>Petardea Sound v12 - Créditos Edition</title>
   <meta name="theme-color" content="#ffffff" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,700;0,800;0,900;1,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
     :root{--bg:#f7f5ef;--paper:#fffdf8;--paper-2:#f3efe6;--ink:#1f1d19;--muted:#686259;--muted-2:#837c73;--line:rgba(20,20,20,.11);--line-strong:rgba(20,20,20,.18);--shadow:0 14px 36px rgba(20,16,8,.07);--shadow-soft:0 8px 22px rgba(20,16,8,.045);--radius:28px;--font-display:'Archivo',sans-serif;--font-body:'Inter',system-ui,sans-serif;--ease:cubic-bezier(.22,1,.36,1)}
@@ -20,6 +20,156 @@
     .agenda-days{display:grid;gap:18px}.agenda-day{border:1px solid var(--line);border-radius:26px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow-soft)}.agenda-date{padding:15px 16px;background:#111;color:#fff;font-family:var(--font-display);font-size:1.03rem;font-weight:900;letter-spacing:.02em;text-transform:uppercase;text-align:center}.agenda-list{display:grid;gap:0}.agenda-item{display:grid;grid-template-columns:1fr;gap:6px;padding:15px 16px;border-top:1px solid var(--line);text-align:center}.agenda-item:first-child{border-top:0}.agenda-time{font-family:var(--font-display);font-size:.82rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;text-align:center;color:var(--muted)}.agenda-text{font-weight:800;line-height:1.42;text-align:center}.agenda-note{padding:16px;border-top:1px solid var(--line);background:var(--paper-2);text-align:center;font-weight:800;line-height:1.55}
     #map{height:340px;border-radius:24px;border:1px solid var(--line);overflow:hidden;background:var(--paper-2);margin-top:18px}.poi-list{display:grid;gap:12px;margin-top:18px}.poi-item .k,.poi-item .v{text-align:left}.profile-card{padding:26px 18px 24px;text-align:center}.profile-avatar{width:72px;height:72px;border-radius:999px;border:1px solid var(--line);display:grid;place-items:center;margin:0 auto 18px;background:var(--paper-2)}.profile-avatar svg{width:34px;height:34px}.profile-name{font-family:var(--font-display);font-size:2rem;letter-spacing:-.04em;line-height:1}.profile-mail{margin-top:8px;font-size:15px;text-decoration:underline;text-underline-offset:4px}.profile-actions{display:grid;gap:14px;max-width:220px;margin:26px auto 0}.ghost-btn{min-height:54px;border-radius:999px;font-weight:800;letter-spacing:.03em;background:#404040;color:#fff}
     .drawer{position:fixed;inset:0;background:rgba(0,0,0,.2);z-index:4000;opacity:0;pointer-events:none;transition:opacity .2s ease}.drawer.open{opacity:1;pointer-events:auto}.drawer-panel{position:absolute;top:0;left:0;bottom:0;width:min(85vw,320px);background:linear-gradient(180deg,#fffdf8,#f7f2e8);border-right:1px solid var(--line);transform:translateX(-100%);transition:transform .32s var(--ease);padding:18px;display:grid;gap:16px;z-index:4001;box-shadow:18px 0 50px rgba(20,16,8,.10)}.drawer.open .drawer-panel{transform:translateX(0)}.drawer h2{margin:6px 0 0;font-family:var(--font-display);font-size:1.9rem;line-height:1;text-transform:uppercase}.menu-list{display:grid;gap:8px}.menu-link{min-height:52px;padding:0 14px;border-radius:18px;border:1px solid var(--line);background:var(--paper-2);display:flex;align-items:center;justify-content:space-between;font:800 12px/1 var(--font-display);letter-spacing:.05em;text-transform:uppercase}.menu-link.active{background:#111;color:#fff;border-color:#111}.menu-foot{margin-top:auto;font-size:12px;line-height:1.5;color:var(--muted)}
+  
+    .wall-head{margin:26px 0 12px;text-align:center}.wall-head h3{margin:0;font-family:var(--font-display);font-size:1.3rem;text-transform:uppercase;letter-spacing:-.03em}.wall-head p{margin:8px 0 0;color:var(--muted);font-size:14px;line-height:1.6}
+    .wall-form{display:grid;gap:10px;margin-bottom:14px}.wall-form input[type=text]{min-height:48px;text-transform:none;font-weight:600;letter-spacing:0}.wall-pick{display:block;margin:0;padding:0}.wall-pick input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}.wall-btn{width:100%;min-height:52px;border-radius:999px;font-weight:800;letter-spacing:.03em;background:#181818;color:#fff;text-align:center;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;text-transform:uppercase}.wall-btn:disabled{opacity:.55;cursor:default}.wall-btn.ghost{background:var(--paper-2);color:#181818;border:1px solid var(--line)}.wall-status{min-height:22px;text-align:center;font-size:14px;font-weight:600;color:var(--muted)}.wall-status.ok{color:#2f7d52}.wall-status.error{color:#a33a46}
+    .wall-grid{columns:2;column-gap:10px}.wall-item{break-inside:avoid;margin:0 0 10px;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--paper-2);box-shadow:var(--shadow-soft);cursor:pointer;display:block;width:100%;padding:0;text-align:left}.wall-item img{display:block;width:100%;height:auto}.wall-cap{padding:8px 10px 10px;font-size:12px;line-height:1.4;color:var(--muted)}.wall-cap b{display:block;color:#181818;font-size:12px}.wall-empty{padding:22px 16px;text-align:center;color:var(--muted);font-size:14px;line-height:1.6;border:1px dashed var(--line-strong);border-radius:18px}
+    .wall-lightbox{position:fixed;inset:0;z-index:6000;background:rgba(10,8,4,.92);display:none;flex-direction:column;align-items:center;justify-content:center;padding:18px;gap:14px}.wall-lightbox.open{display:flex}.wall-lightbox img{max-width:100%;max-height:72vh;border-radius:16px}.wall-lightbox p{margin:0;color:#fff;text-align:center;font-size:14px;line-height:1.5;max-width:34ch}.wall-lightbox button{min-height:46px;padding:0 22px;border-radius:999px;background:#fff;color:#181818;font-weight:800;text-transform:uppercase;font-size:13px}
+
+    /* ESTILOS DE LA SECCIÓN CRÉDITOS ESTILO RESACÓN EN LAS VEGAS */
+    .credits-container {
+      position: relative;
+      background: #000;
+      color: #fff;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      border: 1px solid #222;
+      height: 580px;
+      display: flex;
+      flex-direction: column;
+    }
+    .credits-flash {
+      position: absolute;
+      inset: 0;
+      background: #fff;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10;
+      transition: opacity 0.05s linear;
+    }
+    .credits-flash.active {
+      opacity: 1;
+    }
+    .credits-stage {
+      position: relative;
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+    }
+    .credits-photo-frame {
+      position: absolute;
+      top: 50%;
+      left: 38%;
+      transform: translate(-50%, -50%) rotate(-3deg);
+      width: 58%;
+      max-height: 72%;
+      background: #fff;
+      padding: 10px 10px 30px 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px rgba(255,255,255,0.1);
+      border-radius: 4px;
+      z-index: 2;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .credits-photo-frame img {
+      width: 100%;
+      height: auto;
+      max-height: 330px;
+      object-fit: cover;
+      display: block;
+      filter: contrast(1.05) saturate(1.1);
+    }
+    .credits-photo-caption {
+      position: absolute;
+      bottom: 8px;
+      left: 10px;
+      right: 10px;
+      color: #222;
+      font-family: 'Archivo', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+    .credits-scroll-wrap {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 44%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 3;
+      mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    }
+    .credits-scroll-text {
+      position: absolute;
+      width: 100%;
+      padding: 0 12px;
+      text-align: left;
+      font-family: var(--font-display);
+      animation: creditsRoll 38s linear infinite;
+    }
+    @keyframes creditsRoll {
+      0% { transform: translateY(580px); }
+      100% { transform: translateY(-1600px); }
+    }
+    .credits-block {
+      margin-bottom: 32px;
+    }
+    .credits-role {
+      font-size: 10px;
+      color: #e5a93c;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 900;
+      margin-bottom: 2px;
+    }
+    .credits-name {
+      font-size: 14px;
+      color: #fff;
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+    .credits-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      background: #111;
+      border-top: 1px solid #222;
+      z-index: 5;
+    }
+    .credits-audio-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: #e5a93c;
+      color: #000;
+      font-weight: 900;
+      font-family: var(--font-display);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      box-shadow: 0 4px 12px rgba(229,169,60,0.3);
+    }
+    .credits-audio-btn:active {
+      transform: scale(0.96);
+    }
+    .credits-badge {
+      font-size: 11px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
   </style>
 </head>
 <body>
@@ -48,15 +198,93 @@
         <section class="view active section-enter" id="view-inicio"><div class="panel hero-card"><img src="./assets/logo.jpeg" alt="Logo de Petardea Sound" class="section-logo" /><div class="marquee-wrap"><div class="marquee"><span>3 DÍAS, 4 ASISTENTES, NINGÚN ARTISTA, PERO SEREMOS LOS REYES DE LA PISTA</span><span>3 DÍAS, 4 ASISTENTES, NINGÚN ARTISTA, PERO SEREMOS LOS REYES DE LA PISTA</span></div></div><p class="hero-copy center-copy">Bienvenida oficial al cuartel general de Petardea Sound, donde la logística es debatible, la escenografía se sostiene sola y la actitud llega perfectamente vaporizada.</p><div class="hero-image"><img src="./assets/edu.jpeg" alt="Imagen del cuartel general de Petardea Sound" /></div><p class="hero-copy center-copy">Durante tres días se convivirá entre recogidas en Atocha, siestas tácticas, apariciones marianas en Sala Morocco y conversaciones que, con un poco de suerte, no tendrán que ser desmentidas ante notario. La misión sigue siendo sencilla en apariencia: llegar a todo con dignidad escénica, improvisar con aplomo cuando el horario colapse y conservar suficiente glamour como para que el domingo nadie parezca víctima de su propio personaje.</p><div class="spotlight-grid"><article class="spotlight-card"><div class="spotlight-label">Estado del operativo</div><h3 class="spotlight-title">Elegancia exterior, incertidumbre interior</h3><p class="spotlight-text">Plan oficial: parecer organizadas. Plan real: improvisar con un aplomo tan ofensivo que nadie se atreva a pedir contexto.</p></article><article class="spotlight-card"><div class="spotlight-label">Objetivo del fin de semana</div><h3 class="spotlight-title">Llegar a todo sin perder el peinado</h3><p class="spotlight-text">Se premiará la puntualidad emocional, la resistencia aeróbica y la capacidad de fingir descanso sin que se note el expediente.</p></article></div></div></section>
         <section class="view" id="view-horarios"><div class="panel"><div class="panel-body"><img src="./assets/logo.jpeg" alt="Logo de Petardea Sound" class="section-logo" /><div class="section-head"><h2>Horarios</h2><p>Programa oficial de actos, desplazamientos y decisiones que en ese momento parecerán buenísimas.</p></div><div class="agenda-days"><div class="agenda-day"><div class="agenda-date">Viernes 30 de octubre</div><div class="agenda-list"><div class="agenda-item"><div class="agenda-time">20:00</div><div class="agenda-text">Recogida en Atocha</div></div><div class="agenda-item"><div class="agenda-time">20:30</div><div class="agenda-text">Acampada para usuarios VIP</div></div><div class="agenda-item"><div class="agenda-time">21:00</div><div class="agenda-text">Cena</div></div><div class="agenda-item"><div class="agenda-time">23:59</div><div class="agenda-text">BRNT with Mathame</div></div><div class="agenda-item"><div class="agenda-time">Hora por confirmar</div><div class="agenda-text">Fotosíntesis emocional</div></div></div></div><div class="agenda-day"><div class="agenda-date">Sábado 31 de octubre</div><div class="agenda-list"><div class="agenda-item"><div class="agenda-time">Hora por confirmar</div><div class="agenda-text">Resurrección</div></div><div class="agenda-item"><div class="agenda-time">12:00</div><div class="agenda-text">Recogida en Atocha</div></div><div class="agenda-item"><div class="agenda-time">12:30</div><div class="agenda-text">Acampada</div></div><div class="agenda-item"><div class="agenda-time">13:00</div><div class="agenda-text">Charla informativa</div></div><div class="agenda-item"><div class="agenda-time">14:00</div><div class="agenda-text">Comida</div></div><div class="agenda-item"><div class="agenda-time">15:30</div><div class="agenda-text">Esbarjo</div></div><div class="agenda-item"><div class="agenda-time">17:30</div><div class="agenda-text">Tardeo en Sala Morocco</div></div><div class="agenda-item"><div class="agenda-time">Hora por confirmar</div><div class="agenda-text">Petardeo institucional</div></div></div></div><div class="agenda-day"><div class="agenda-date">Domingo 1 de noviembre</div><div class="agenda-list"><div class="agenda-note">Con sobrevivir y conservar el flequillo ya nos damos por satisfechos.</div><div class="agenda-item"><div class="agenda-time">Hora por confirmar</div><div class="agenda-text">Excursión a Atocha (ja)</div></div></div></div></div></div></div></section>
         <section class="view" id="view-mapa"><div class="panel"><div class="panel-body"><img src="./assets/logo.jpeg" alt="Logo de Petardea Sound" class="section-logo" /><div class="section-head"><h2>Mapa</h2><p>Red de puntos estratégicos para moverse con elegancia, urgencia o ambas cosas a la vez.</p></div><div id="map"></div><div class="poi-list" id="poiList"></div><div class="map-legend"><div class="k">Cómo usar esto sin dramatizar</div><div class="v">Pulsa un punto, abre la ruta en Mapas y avanza con convicción, aunque por dentro vayas improvisando como una becaria del caos con los datos móviles al 7%.</div></div></div></div></section>
-        <section class="view" id="view-imagenes"><div class="panel"><div class="panel-body"><img src="./assets/logo.jpeg" alt="Logo de Petardea Sound" class="section-logo" /><div class="section-head"><h2>Imágenes</h2><p>Se irán subiendo imágenes durante el evento. De momento, estas dos piezas ya sirven como prueba material, chantaje suave y memoria preventiva.</p></div><div class="gallery-shell"><div class="gallery-stage"><div class="gallery-track" id="galleryTrack"><div class="gallery-frame"><img src="./assets/foto1.jpeg" alt="Primera imagen del evento Petardea Sound" /></div><div class="gallery-frame"><img src="./assets/foto2.jpeg" alt="Segunda imagen del evento Petardea Sound" /></div></div></div><div class="gallery-controls"><button class="gallery-btn" id="prevGallery" aria-label="Imagen anterior">‹</button><button class="gallery-btn" id="nextGallery" aria-label="Imagen siguiente">›</button></div><div class="gallery-dots"><span class="gallery-dot active"></span><span class="gallery-dot"></span></div></div></div></div></section>
+        <section class="view" id="view-imagenes"><div class="panel"><div class="panel-body"><img src="./assets/logo.jpeg" alt="Logo de Petardea Sound" class="section-logo" /><div class="section-head"><h2>Imágenes</h2><p>Se irán subiendo imágenes durante el evento. De momento, estas dos piezas ya sirven como prueba material, chantaje suave y memoria preventiva.</p></div><div class="gallery-shell"><div class="gallery-stage"><div class="gallery-track" id="galleryTrack"><div class="gallery-frame"><img src="./assets/foto1.jpeg" alt="Primera imagen del evento Petardea Sound" /></div><div class="gallery-frame"><img src="./assets/foto2.jpeg" alt="Segunda imagen del evento Petardea Sound" /></div></div></div><div class="gallery-controls"><button class="gallery-btn" id="prevGallery" aria-label="Imagen anterior">‹</button><button class="gallery-btn" id="nextGallery" aria-label="Imagen siguiente">›</button></div><div class="gallery-dots"><span class="gallery-dot active"></span><span class="gallery-dot"></span></div></div><div class="wall-head"><h3>Muro de pruebas</h3><p>Sube tus fotos del finde. Todo lo que se suba aquí podrá ser usado en tu contra con cariño.</p></div><div class="wall-form"><input type="text" id="wallName" maxlength="24" placeholder="Tu nombre (opcional)" autocomplete="off" /><input type="text" id="wallCaption" maxlength="80" placeholder="Pie de foto (opcional)" autocomplete="off" /><label class="wall-btn wall-pick" id="wallPickLabel" for="wallFile">Añadir al muro<input type="file" id="wallFile" accept="image/*" /></label><div class="wall-status" id="wallStatus" role="status"></div></div><div class="wall-grid" id="wallGrid"></div><button class="wall-btn ghost" id="wallRefresh" type="button" style="margin-top:6px">Actualizar muro</button></div></div></section>
         <section class="view" id="view-info"><div class="panel"><div class="panel-body"><img src="./assets/logo.jpeg" alt="Logo de Petardea Sound" class="section-logo" /><div class="section-head"><h2>Info útil</h2><p>Datos de valor real para cuando el glamour ya no sea suficiente.</p></div><div class="stack"><article class="info-item"><div class="k">Móvil de seguridad</div><div class="v"><a class="inline-link" href="tel:629580799">629 580 799</a></div></article><article class="info-item"><div class="k">Red wifi</div><div class="v">MOVISTAR-WIFI6-2C00</div></article><article class="info-item"><div class="k">Contraseña wifi</div><div class="v">Pídesela al anfitrión.</div></article><article class="info-item"><div class="k">Apunte audiovisual</div><div class="v">No, no tengo tele, sino un monitor. No es por ir de cultureta: es que mi TDAH no me deja verla sin discutir con ella.</div></article></div></div></div></section>
         <section class="view" id="view-grial"><div class="panel"><div class="panel-body"><img src="./assets/logo.jpeg" alt="Logo de Petardea Sound" class="section-logo" /><div class="section-head"><h2>Santo Grial</h2><p>La banda sonora oficial para entrar en personaje sin pedir perdón por absolutamente nada.</p></div><div class="stack"><div class="audio-frame-wrap"><iframe width="100%" height="600" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2422330332%3Fsecret_token%3Ds-tOO6GqHFniQ&color=%234a5667&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div class="audio-meta"><a href="https://soundcloud.com/eduardo-corredera-876388625" title="Eduardo.corredera" target="_blank" rel="noopener noreferrer">Eduardo.corredera</a> · <a href="https://soundcloud.com/eduardo-corredera-876388625/edu-petardeo-total-20102026/s-tOO6GqHFniQ" title="EDU - Petardeo Total - 20102026" target="_blank" rel="noopener noreferrer">EDU - Petardeo Total - 20102026</a></div></div></div></div></div></section>
         <section class="view" id="view-supervivencia"><div class="panel"><div class="panel-body"><img src="./assets/logo.jpeg" alt="Logo de Petardea Sound" class="section-logo" /><div class="section-head"><h2>Manual de supervivencia</h2><p>Guía oficial para interactuar con Rolo sin acabar en conflicto diplomático, humillación pública ni represalias con mirada fija desde el pasillo.</p></div><div class="stack"><div class="cat-image"><img src="./assets/rolo-guide.jpeg" alt="Infografía sobre dónde acariciar a un gato" /></div><div class="cat-block"><strong>Acariciar a un gato de forma correcta requiere respetar su espacio y entender su lenguaje corporal</strong> para que la interacción no termine convertida en una decisión médicamente comentable.</div><div class="cat-block"><strong>Pasos para iniciar el contacto.</strong> Deja que el gato decida; arrodíllate, baja el drama, ofrece la mano a una altura inferior a su mirada y permite que él haga la inspección de aduanas olfativa.</div><div class="cat-block"><strong>Usa la regla de las 4 P.</strong> Las caricias deben ser previsibles, permitidas, placenteras y productivas. Si una de esas cuatro falla, retira la candidatura.</div><div class="cat-block"><strong>Observa el momento.</strong> No lo acaricies mientras come, se lava o duerme profundamente. No eres el protagonista de su arco narrativo.</div><div class="cat-block"><strong>Mejores zonas para acariciar.</strong> Cabeza y mejillas, debajo de la barbilla, detrás de las orejas y espalda en el sentido del pelo. Eso sí: sin venirse arriba como si estuvieras abrillantando un coche.</div><div class="cat-block"><strong>Zonas a evitar.</strong> La barriga, las patas, la cola y los bigotes. Si tocas ahí, ya no es ternura: es provocación con consecuencias.</div><div class="cat-block"><strong>Señales.</strong> Si ronronea, entrecierra los ojos o empuja la cabeza, bien. Si mueve la cola con brusquedad, se tensa o se aleja, se para. La democracia felina tiene límites clarísimos.</div></div></div></div></section>
+        
+        <!-- SECCIÓN CRÉDITOS FINAL RESACÓN EN LAS VEGAS -->
+        <section class="view" id="view-creditos">
+          <div class="panel">
+            <div class="panel-body">
+              <img src="./assets/logo.jpeg" alt="Logo de Petardea Sound" class="section-logo" />
+              <div class="section-head">
+                <h2>Créditos Finales</h2>
+                <p>Lo que pasa en Petardea Sound... se queda registrado en el carrete confidencial de fotos.</p>
+              </div>
+              <div class="credits-container">
+                <div class="credits-flash" id="creditsFlash"></div>
+                <div class="credits-stage">
+                  <div class="credits-photo-frame" id="creditsPhotoFrame">
+                    <img id="creditsPhotoImg" src="" alt="Créditos Foto" />
+                    <div class="credits-photo-caption" id="creditsPhotoCaption">Cargando la leyenda...</div>
+                  </div>
+                  <div class="credits-scroll-wrap">
+                    <div class="credits-scroll-text">
+                      <div class="credits-block">
+                        <div class="credits-role">UNA PRODUCCIÓN DE</div>
+                        <div class="credits-name">PETARDEA SOUND</div>
+                      </div>
+                      <div class="credits-block">
+                        <div class="credits-role">DIRECCIÓN Y CHAOS MANAGEMENT</div>
+                        <div class="credits-name">EDU CORREDERA</div>
+                      </div>
+                      <div class="credits-block">
+                        <div class="credits-role">REPARTO PRINCIPAL</div>
+                        <div class="credits-name">LOS 4 DEL APOCALIPSIS</div>
+                      </div>
+                      <div class="credits-block">
+                        <div class="credits-role">SUPERVISIÓN DE SEGURIDAD FELINA</div>
+                        <div class="credits-name">ROLO "EL INSPECTOR"</div>
+                      </div>
+                      <div class="credits-block">
+                        <div class="credits-role">COREOGRAFÍA Y DIGNIDAD</div>
+                        <div class="credits-name">DESCONOCIDA</div>
+                      </div>
+                      <div class="credits-block">
+                        <div class="credits-role">LOCALIZACIÓN Y TARDEO</div>
+                        <div class="credits-name">SALA MOROCCO</div>
+                      </div>
+                      <div class="credits-block">
+                        <div class="credits-role">LOGÍSTICA Y DESPLAZAMIENTOS</div>
+                        <div class="credits-name">ESTACIÓN DE ATOCHA</div>
+                      </div>
+                      <div class="credits-block">
+                        <div class="credits-role">BANDA SONORA OFICIAL</div>
+                        <div class="credits-name">CREDITOS.MP3</div>
+                      </div>
+                      <div class="credits-block">
+                        <div class="credits-role">AGRADECIMIENTOS ESPECIALES</div>
+                        <div class="credits-name">A QUIENES SOBREVIVIERON SIN PERDER EL PEINADO</div>
+                      </div>
+                      <div class="credits-block">
+                        <div class="credits-role">FIN DEL EXPEDIENTE</div>
+                        <div class="credits-name">PETARDEA SOUND 2026</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="credits-controls">
+                  <button class="credits-audio-btn" id="creditsAudioToggle" type="button">
+                    <span id="creditsAudioIcon">▶</span> <span id="creditsAudioText">MÚSICA DE CRÉDITOS</span>
+                  </button>
+                  <div class="credits-badge">THE HANGOVER STYLE</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section class="view" id="view-perfil"><div class="panel profile-card"><div class="profile-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.8-3.2 5-5 8-5s6.2 1.8 8 5"></path></svg></div><div class="profile-name">Área privada</div><div class="profile-mail">Acceso acreditado</div><div class="profile-actions"><button class="ghost-btn" id="logoutBtn">Cerrar sesión</button></div></div></section>
       </div>
     </main>
-    <aside class="drawer" id="drawer" aria-hidden="true"><div class="drawer-panel"><div><h2>Petardea Sound</h2></div><div class="menu-list"><button class="menu-link active" data-view="inicio">Inicio <span>→</span></button><button class="menu-link" data-view="horarios">Horarios <span>→</span></button><button class="menu-link" data-view="mapa">Mapa <span>→</span></button><button class="menu-link" data-view="imagenes">Imágenes <span>→</span></button><button class="menu-link" data-view="info">Info útil <span>→</span></button><button class="menu-link" data-view="grial">Santo grial <span>→</span></button><button class="menu-link" data-view="supervivencia">Manual de supervivencia <span>→</span></button></div><div class="menu-foot">Navega por secciones desde aquí sin perder la compostura ni la narrativa personal que te has montado para justificar este fin de semana.</div></div></aside>
+    <aside class="drawer" id="drawer" aria-hidden="true"><div class="drawer-panel"><div><h2>Petardea Sound</h2></div><div class="menu-list"><button class="menu-link active" data-view="inicio">Inicio <span>→</span></button><button class="menu-link" data-view="horarios">Horarios <span>→</span></button><button class="menu-link" data-view="mapa">Mapa <span>→</span></button><button class="menu-link" data-view="imagenes">Imágenes <span>→</span></button><button class="menu-link" data-view="info">Info útil <span>→</span></button><button class="menu-link" data-view="grial">Santo grial <span>→</span></button><button class="menu-link" data-view="supervivencia">Manual de supervivencia <span>→</span></button><button class="menu-link" data-view="creditos">Créditos <span>→</span></button></div><div class="menu-foot">Navega por secciones desde aquí sin perder la compostura ni la narrativa personal que te has montado para justificar este fin de semana.</div></div></aside>
   </div>
+  
+  <audio id="hangoverAudio" loop preload="auto">
+    <source src="creditos.mp3" type="audio/mpeg">
+  </audio>
+
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     const passwordKeys=['MASCLETÁ2026','MASCLETA2026'];
@@ -78,6 +306,82 @@
     const nextGallery=document.getElementById('nextGallery');
     const galleryDots=document.querySelectorAll('.gallery-dot');
     let mapStarted=false,mapInstance=null,galleryIndex=0;
+
+    // CREDITS SLIDESHOW LOGIC (LAS VEGAS HANGOVER END CREDITS)
+    const creditsPhotos = [
+      { src: './5012FDCD-5DE1-4606-8EFE-2F0244FE4FA1.jpg', cap: 'DISFRACES DE EMERGENCIA (PAYASO Y ANTIFAZ)' },
+      { src: './IMG_0097.JPG', cap: 'METALLICA & ACTITUD EN CONCIERTO' },
+      { src: './IMG_0395.jpg', cap: 'PERSPECTIVA DEL CAOS CON COPAS' },
+      { src: './993e5108-61e0-44f3-9d8e-0e17a2ed59d2.jpg', cap: 'CHAPULÍN COLORADO & TURBANTE VIP' },
+      { src: './IMG_0913.jpg', cap: 'OPERATIVO NOCTURNO CON MASCARILLA' },
+      { src: './IMG_2216.jpg', cap: 'RITUALES DE MADRUGADA' },
+      { src: './IMG_0991.jpg', cap: 'CONFIANZA ABSOLUTA & PELO RIZADO' }
+    ];
+    let creditsIdx = 0;
+    let creditsTimer = null;
+    const creditsPhotoImg = document.getElementById('creditsPhotoImg');
+    const creditsPhotoCaption = document.getElementById('creditsPhotoCaption');
+    const creditsPhotoFrame = document.getElementById('creditsPhotoFrame');
+    const creditsFlash = document.getElementById('creditsFlash');
+    const hangoverAudio = document.getElementById('hangoverAudio');
+    const creditsAudioToggle = document.getElementById('creditsAudioToggle');
+    const creditsAudioIcon = document.getElementById('creditsAudioIcon');
+
+    function triggerFlash() {
+      if(!creditsFlash) return;
+      creditsFlash.classList.add('active');
+      setTimeout(() => creditsFlash.classList.remove('active'), 120);
+    }
+
+    function showNextCreditsPhoto() {
+      if(!creditsPhotos.length) return;
+      triggerFlash();
+      const current = creditsPhotos[creditsIdx];
+      creditsPhotoImg.src = current.src;
+      creditsPhotoCaption.textContent = current.cap;
+
+      // Generar rotación aleatoria para sensación de polaroid disparada
+      const rot = (Math.random() * 12 - 6).toFixed(1);
+      const scale = (0.95 + Math.random() * 0.1).toFixed(2);
+      creditsPhotoFrame.style.transform = `translate(-50%, -50%) rotate(${rot}deg) scale(${scale})`;
+
+      creditsIdx = (creditsIdx + 1) % creditsPhotos.length;
+    }
+
+    function startCreditsShow() {
+      showNextCreditsPhoto();
+      if(creditsTimer) clearInterval(creditsTimer);
+      creditsTimer = setInterval(showNextCreditsPhoto, 3200);
+      try {
+        hangoverAudio.play().then(() => {
+          if(creditsAudioIcon) creditsAudioIcon.textContent = '⏸';
+        }).catch(() => {
+          if(creditsAudioIcon) creditsAudioIcon.textContent = '▶';
+        });
+      } catch(e){}
+    }
+
+    function stopCreditsShow() {
+      if(creditsTimer) clearInterval(creditsTimer);
+      creditsTimer = null;
+      try {
+        hangoverAudio.pause();
+        if(creditsAudioIcon) creditsAudioIcon.textContent = '▶';
+      } catch(e){}
+    }
+
+    if(creditsAudioToggle) {
+      creditsAudioToggle.addEventListener('click', () => {
+        if(hangoverAudio.paused) {
+          hangoverAudio.play();
+          creditsAudioIcon.textContent = '⏸';
+        } else {
+          hangoverAudio.pause();
+          creditsAudioIcon.textContent = '▶';
+        }
+      });
+    }
+
     try{const remembered=sessionStorage.getItem('petardea-user');if(passwordKeys.includes(remembered)){showApp()}else{showLogin()}}catch(e){showLogin()}
     loginForm.addEventListener('submit',e=>{e.preventDefault();const value=password.value.trim().toUpperCase();if(!passwordKeys.includes(value)){feedback.textContent='Contraseña incorrecta. Aquí no se cuela nadie sin pedigrí festivo.';feedback.className='feedback error';return}try{sessionStorage.setItem('petardea-user',passwordKeys[0])}catch(e){}feedback.textContent='Acceso concedido. Pasa y compórtate como si supieras perfectamente lo que haces.';feedback.className='feedback ok';showApp()});
     menuBtn.addEventListener('click',()=>{drawer.classList.add('open');drawer.setAttribute('aria-hidden','false')});
@@ -90,10 +394,108 @@
     function showLogin(){loginScreen.classList.remove('hidden');mainScreen.classList.add('hidden')}
     function showApp(){loginScreen.classList.add('hidden');mainScreen.classList.remove('hidden');switchView('inicio',true)}
     function closeMenu(){drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true')}
-    function logout(){mainScreen.classList.add('hidden');loginScreen.classList.remove('hidden');closeMenu();password.value='';feedback.textContent='';feedback.className='feedback';try{sessionStorage.removeItem('petardea-user')}catch(e){}}
-    function switchView(name,skipScroll){views.forEach(view=>{const active=view.id==='view-'+name;view.classList.toggle('active',active);view.classList.remove('section-enter');if(active){void view.offsetWidth;view.classList.add('section-enter')}});menuLinks.forEach(link=>link.classList.toggle('active',link.dataset.view===name));const titles={inicio:'Inicio',horarios:'Horarios',mapa:'Mapa',imagenes:'Imágenes',info:'Info útil',grial:'Santo Grial',supervivencia:'Manual',perfil:'Perfil'};topTitle.textContent=titles[name]||'Inicio';closeMenu();if(name==='mapa')setTimeout(initMap,120);if(!skipScroll)window.scrollTo({top:0,behavior:'smooth'})}
+    function logout(){mainScreen.classList.add('hidden');loginScreen.classList.remove('hidden');closeMenu();password.value='';feedback.textContent='';feedback.className='feedback';stopCreditsShow();try{sessionStorage.removeItem('petardea-user')}catch(e){}}
+    function switchView(name,skipScroll){
+      views.forEach(view=>{
+        const active=view.id==='view-'+name;
+        view.classList.toggle('active',active);
+        view.classList.remove('section-enter');
+        if(active){void view.offsetWidth;view.classList.add('section-enter')}
+      });
+      menuLinks.forEach(link=>link.classList.toggle('active',link.dataset.view===name));
+      const titles={inicio:'Inicio',horarios:'Horarios',mapa:'Mapa',imagenes:'Imágenes',info:'Info útil',grial:'Santo Grial',supervivencia:'Manual',creditos:'Créditos',perfil:'Perfil'};
+      topTitle.textContent=titles[name]||'Inicio';
+      closeMenu();
+      if(name==='mapa')setTimeout(initMap,120);
+      if(name==='creditos') {
+        startCreditsShow();
+      } else {
+        stopCreditsShow();
+      }
+      if(!skipScroll)window.scrollTo({top:0,behavior:'smooth'});
+    }
     function moveGallery(step){galleryIndex=(galleryIndex+step+2)%2;galleryTrack.style.transform='translateX(-'+(galleryIndex*100)+'%)';galleryDots.forEach((dot,i)=>dot.classList.toggle('active',i===galleryIndex))}
     function initMap(){if(mapStarted){if(mapInstance)setTimeout(()=>mapInstance.invalidateSize(),120);return}try{mapStarted=true;mapInstance=L.map('map',{scrollWheelZoom:false,zoomControl:false}).setView([40.437,-3.694],11);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap contributors'}).addTo(mapInstance);const points=[{name:'Estación de Atocha',coords:[40.40657,-3.68934],address:'Glorieta del Emperador Carlos V, s/n, 28045 Madrid',color:'#4f6fb0'},{name:'Sala Morocco',coords:[40.42326,-3.70592],address:'Calle del Marqués de Leganés, 7, 28004 Madrid',color:'#d08e72'},{name:'Hospital de la Paz',coords:[40.48056,-3.68822],address:'Paseo de la Castellana, 261, 28046 Madrid',color:'#b56d6a'},{name:'Comisaría de Policía de Tetuán',coords:[40.45985,-3.70255],address:'Pasaje Maestros Ladrilleros, 2, 28039 Madrid',color:'#6b7a8f'},{name:'Objetos perdidos',coords:[40.39595,-3.69987],address:'Paseo del Molino, 7, 28045 Madrid',color:'#8c6e5b'},{name:'Tanatorio Norte',coords:[40.4906,-3.6947],address:'Calle Valdegovía, 8, 28034 Madrid',color:'#4c4c4c'},{name:'Farmacia Argibay 182',coords:[40.46744,-3.69914],address:'Calle del Capitán Blanco Argibai 182, 28029 Madrid',color:'#85a875'},{name:'Paticano (bodas exprés)',coords:[40.40826,-3.69939],address:'Travesía de la Primavera, 3, 28012 Madrid',color:'#b87aa0'}];function markerIcon(color){return L.divIcon({className:'',html:'<div style="width:18px;height:18px;border-radius:999px;background:'+color+';border:3px solid white;box-shadow:0 8px 18px rgba(0,0,0,.18)"></div>',iconSize:[18,18],iconAnchor:[9,9]})}const bounds=[];points.forEach(point=>{bounds.push(point.coords);const mapsUrl='https://maps.apple.com/?q='+encodeURIComponent(point.address);L.marker(point.coords,{icon:markerIcon(point.color)}).addTo(mapInstance).bindPopup('<strong>'+point.name+'</strong><br>'+point.address+'<br><a href="'+mapsUrl+'" target="_blank" rel="noopener noreferrer">Abrir en Mapas</a>')});poiList.innerHTML=points.map(point=>{const mapsUrl='https://maps.apple.com/?q='+encodeURIComponent(point.address);return '<article class="poi-item"><div class="k">'+point.name+'</div><div class="v"><a class="inline-link" href="'+mapsUrl+'" target="_blank" rel="noopener noreferrer">'+point.address+'</a></div></article>'}).join('');mapInstance.fitBounds(bounds,{padding:[30,30]});setTimeout(()=>mapInstance.invalidateSize(),180)}catch(e){document.getElementById('map').innerHTML='<div style="padding:18px;color:#6a665f;">No se pudo cargar el mapa.</div>'}}
   </script>
+  <script>
+  (function(){
+    var CLOUD='dq5mwq7e',PRESET='petardea-muro',TAG='petardea-muro-wall',MAXMB=15,MAXPX=1600;
+    var grid=document.getElementById('wallGrid'),file=document.getElementById('wallFile'),status=document.getElementById('wallStatus'),
+        nameI=document.getElementById('wallName'),capI=document.getElementById('wallCaption'),label=document.getElementById('wallPickLabel'),
+        refresh=document.getElementById('wallRefresh'),lb=document.getElementById('wallLightbox'),lbImg=document.getElementById('wallLbImg'),
+        lbCap=document.getElementById('wallLbCap'),lbClose=document.getElementById('wallLbClose');
+    if(!grid||!file)return;
+    var items=[];
+    var FUNNY=['Prueba material','Evidencia sin contexto','Esto no salió en el horario','Momento de dignidad dudosa','Petardeo institucional','Expediente emocional','Testigo: nadie','Ya lo explicaremos mañana','Foto robada a la cordura','Aquí se decidió algo que luego no se recordaba'];
+    function say(msg,cls){status.textContent=msg||'';status.className='wall-status'+(cls?' '+cls:'')}
+    function url(it,tr){return 'https://res.cloudinary.com/'+CLOUD+'/image/upload/'+tr+'/v'+it.version+'/'+it.public_id+'.'+(it.format||'jpg')}
+    function render(){
+      grid.textContent='';
+      if(!items.length){var e=document.createElement('div');e.className='wall-empty';e.textContent='El muro está vacío. Alguien tiene que ser la primera persona en dejar pruebas.';grid.appendChild(e);return}
+      items.forEach(function(it,n){
+        var b=document.createElement('button');b.type='button';b.className='wall-item';b.setAttribute('aria-label','Abrir foto '+(n+1));
+        var im=document.createElement('img');im.loading='lazy';im.alt=it.caption||'Foto del muro';im.src=url(it,'c_limit,w_500,q_auto,f_auto');
+        var c=document.createElement('div');c.className='wall-cap';
+        if(it.who){var w=document.createElement('b');w.textContent=it.who;c.appendChild(w)}
+        c.appendChild(document.createTextNode(it.caption||''));
+        b.appendChild(im);if(it.who||it.caption)b.appendChild(c);
+        b.addEventListener('click',function(){lbImg.src=url(it,'c_limit,w_1400,q_auto,f_auto');lbImg.alt=it.caption||'Foto del muro';lbCap.textContent=(it.who?it.who+': ':'')+(it.caption||'');lb.classList.add('open')});
+        grid.appendChild(b);
+      });
+    }
+    function fromList(r){
+      var ctx=(r.context&&(r.context.custom||r.context))||{};
+      return {public_id:r.public_id,version:r.version,format:r.format,created:r.created_at||'',caption:ctx.caption||'',who:ctx.who||''};
+    }
+    function load(){
+      say('Cargando muro...');
+      fetch('https://res.cloudinary.com/'+CLOUD+'/image/list/'+TAG+'.json?t='+Date.now()).then(function(r){
+        if(r.status===404){return {resources:[]}}
+        if(!r.ok)throw new Error('list');return r.json();
+      }).then(function(d){
+        var fresh=(d.resources||[]).map(fromList);
+        var ids={};fresh.forEach(function(x){ids[x.public_id]=1});
+        var local=items.filter(function(x){return x.local&&!ids[x.public_id]});
+        fresh.sort(function(a,b){return a.created<b.created?1:-1});
+        items=local.concat(fresh);render();say('');
+      }).catch(function(){render();say('No se pudo cargar el muro. Si las fotos no aparecen, avisa al anfitrión.','error')});
+    }
+    function esc(s){return String(s).replace(/([=|\\])/g,'\\$1')}
+    function shrink(f){
+      return new Promise(function(res){
+        var im=new Image(),u=URL.createObjectURL(f);
+        im.onload=function(){
+          var s=Math.min(1,MAXPX/Math.max(im.width,im.height)),cv=document.createElement('canvas');
+          cv.width=Math.round(im.width*s);cv.height=Math.round(im.height*s);cv.getContext('2d').drawImage(im,0,0,cv.width,cv.height);
+          URL.revokeObjectURL(u);cv.toBlob(function(b){res(b||f)},'image/jpeg',.85);
+        };
+        im.onerror=function(){URL.revokeObjectURL(u);res(f)};im.src=u;
+      });
+    }
+    file.addEventListener('change',function(){
+      var f=file.files&&file.files[0];if(!f)return;
+      if(f.type&&f.type.indexOf('image/')!==0){say('Eso no es una foto.','error');file.value='';return}
+      if(f.size>MAXMB*1024*1024){say('La foto pesa demasiado (máximo '+MAXMB+' MB).','error');file.value='';return}
+      var who=nameI.value.trim(),cap=capI.value.trim()||FUNNY[Math.floor(Math.random()*FUNNY.length)];
+      label.style.opacity='.55';label.style.pointerEvents='none';say('Subiendo foto...');
+      shrink(f).then(function(blob){
+        var fd=new FormData();fd.append('file',blob,'foto.jpg');fd.append('upload_preset',PRESET);fd.append('tags',TAG);
+        fd.append('context','caption='+esc(cap)+(who?'|who='+esc(who):''));
+        return fetch('https://api.cloudinary.com/v1_1/'+CLOUD+'/image/upload',{method:'POST',body:fd});
+      }).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error((j.error&&j.error.message)||'upload');return j})}).then(function(j){
+        items.unshift({public_id:j.public_id,version:j.version,format:j.format,created:j.created_at||'',caption:cap,who:who,local:true});
+        render();capI.value='';say('Foto subida. Ya forma parte del expediente.','ok');
+      }).catch(function(e){say('No se pudo subir: '+(e&&e.message?e.message:'error desconocido'),'error')}).then(function(){
+        label.style.opacity='';label.style.pointerEvents='';file.value='';
+      });
+    });
+    refresh.addEventListener('click',load);
+    function closeLb(){lb.classList.remove('open');lbImg.src=''}
+    lbClose.addEventListener('click',closeLb);lb.addEventListener('click',function(e){if(e.target===lb)closeLb()});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb()});
+    render();load();
+  })();
+  </script>
+  <div class="wall-lightbox" id="wallLightbox" role="dialog" aria-modal="true" aria-label="Foto del muro"><img id="wallLbImg" alt="" /><p id="wallLbCap"></p><button type="button" id="wallLbClose">Cerrar</button></div>
 </body>
 </html>
